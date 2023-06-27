@@ -20,6 +20,7 @@ O novo conteúdo deste README.md será editado na branch [features/inicial](http
 ## Lista de Materiais 
 
 
+
 - Custos:  
     Arduino: ~ R$100 --> Já temos (pra que arduino? Um atmega 8 resolve com um pé nas costas e custa 10 mangos!(tabajaralabs))  
     Trava eletrônica: ~ R$200 --> Tem uma na CCD  
