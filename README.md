@@ -19,6 +19,31 @@ O novo conteúdo deste README.md será editado na branch [features/inicial](http
 
 ## Lista de Materiais 
 
+[Arduino Uno](https://ca.robotshop.com/products/arduino-uno-r3-usb-microcontroller?pr_prod_strat=collection_fallback&pr_rec_id=9e1056120&pr_rec_pid=7729821548695&pr_ref_pid=7728911941783&pr_seq=uniform) CAD 35.99
+
+[Node MCU](https://www.electromike.com/plaquette-nodemcu-v3-lua-iot-esp8266-wifi-arduino-nodemcu-lua.html) CAD 9.99
+
+[Módulo RFID RC522](https://ca.robotshop.com/products/mifare-rc522-module-rfid-reader) CAD 13.75
+
+[Módulo Relê HL-525 v1.0](https://www.canadarobotix.com/products/1347) CAD 5.09
+
+Conector Jack 2.5mm 
+
+Adaptador de corrente 9V 2A 
+
+Buzzer ou Speaker 8 Ohms 
+
+Fechadura elétrica Solenóide 12 V 
+
+Led 5mm vermelho 
+
+Led 5mm verde 
+
+
+Iteração 2: 
+Placa de circuito impresso 
+(Material para a integração do módulo relê)
+(Material para a integração do arduino)
 
 
 - Custos:  
