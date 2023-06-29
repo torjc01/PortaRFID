@@ -1,0 +1,26 @@
+version : "3.1"
+services: 
+  db:
+    container_name: ${APP}-postgresdb-${SUFFIX}
+    image: postgres:15.1
+    ports:
+      - 5432:5432
+    networks:
+      - ${NETWORK}
+    volumes:
+      - ./data/postgres-data:/data/postgres
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+
+  omnidb:
+    container_name: ${APP}-omnidb-${SUFFIX}
+    image: omnidbteam/omnidb
+    ports: [ "8000:8000"]
+    networks: 
+      - ${NETWORK} 
+
+networks:
+  garoa-net:
+    driver: bridge
