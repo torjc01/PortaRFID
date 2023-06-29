@@ -1,7 +1,21 @@
 # PortaRFID - Controle de Acesso por rádio 
+
+<div align="center">
+    <img src="./images/Logo.png">
+</div>
+
+
 Colaboração para desenvolvimento de o do projeto Porta RFID. Conteúdo inicial copiado da página [Porta RFID, do Garoa Hacker Clube](https://garoa.net.br/wiki/Porta_RFID). 
 
 O novo conteúdo deste README.md será editado na branch [features/inicial](https://github.com/torjc01/PortaRFID/tree/features/inicial). 
+
+## O que é RFID
+
+Um sistema RFID `Radio Frequency Identification` é composto de dois componentes principais: uma tag, que se apresenta ao sistema, e uma leitora, que faz a identificaçao da tag e encaminha os dados para tratamento adequado. 
+
+A leitora é constituida de um modulo de radio, emissor de um sinal de alta frequencia e de uma antena. Por possuir alimentaçao elétrica propria é conhecido como dispositivo ativo da comunicacao. 
+
+A tag, por sua vez, é chamada de dispositivo passivo da comunicaçao, pois nao dispoe de nenhuma fonte de energia propria. Ela depende do campo magnético criado pelo sinal emitido pela leitora para energizar o seu circuito e assim estabelecer a conexao e a troca de mensagens. 
 
 ## Porta RFID
 - Proposta: criar um sistema que permita a abertura de uma porta (ou qualquer outra coisa) através de uma tag rfid, como visto no London Hackspace
@@ -11,10 +25,33 @@ O novo conteúdo deste README.md será editado na branch [features/inicial](http
 - Possíveis problemas: clonagem de tag rfid. Qual a segurança na leitura do serial? Associar com outro meio, como senha?
 - Vantagens: se alguém perder a chave não é preciso trocar a de todos
 
+## Requisitos 
+ 
+- Emissao de tag de acesso permanente para membros do Garoa 
+- Emissao de tag de acesso temporaria com data/hora de expiraçao
+- Revogaçao de tags emitidas  
+- Casos de uso : 
+    - MEMBROS: acesso principal 
+    - VISITANTE: visita (acesso temporario)
+    - PRESTADOR DE SERVIÇO: rendez-vous 
+
+## Beneficios 
+
+- Gestao simplificada da gestao de acessos 
+    - atribuicao de novos acessos 
+    - controle de acessos temporarios 
+    - revogacao de acessos
+- Elimina necessidade de trocar a chave de todos quando alguém perde sua chave pessoal >> economia em compra de material 
+- Duplicatas podem ser geradas para os que desejarem possuir uma tag de backup 
+- Mais de um tipo de acesso pode ser controlado pela mesma tag 
+- Possibilidade de fazer `BYOT` Bring your own tag: se a pessoa possuir uma tag, é possivel atribuir acessos a esta tag. 
+
+
+
 ### Diagrama de blocos 
 
 <div align="center">
-    <img src="./images/PortaRFID.png" width="800" />
+    <img src="./images/DiagBlocs.png" width="800" />
 </div>
 
 ## Lista de Materiais 
@@ -45,6 +82,22 @@ Placa de circuito impresso
 (Material para a integração do módulo relê)
 (Material para a integração do arduino)
 
+
+## Aplicaçao de Gestao de Acessos 
+
+O software da aplicaçao de Gestao de Acessos é formado por três componentes principais: a base de dados PostgreSQL, responsavel por armazenar todas as entidades de dados geridas pelo sistema; uma API NestJS, responsavel por realizar a leitura dos dados disponiveis no banco de dados de acesso, bem como a atualizaçao desta base por pessoas autorizadas; 3. aplicaçao front-end, em framework a escolher, para facilitar o acesso dos usuarios às informaçoes mantidas na BD.
+
+Para simplificar o desenvolvimento e a manutenibilidade da aplicaçao a longo prazo, ela sera desenvolvida e entregue conteneirizada, colocando em containers docker 
+
+<div align="center">
+    <img src="./images/ArqSoftware.png" width="800" />
+</div>
+
+## Instalaçao 
+
+O software componente do sistema é mantido em uma base de dados PostgreSQL, e acessado via uma API backend em NestJS. Uma interface de usuario devera ser criada para facilitar o acesso aos dados 
+
+docker exec -it my_container python omnidb-server.py --createsuperuser=admin pass
 
 - Custos:  
     Arduino: ~ R$100 --> Já temos (pra que arduino? Um atmega 8 resolve com um pé nas costas e custa 10 mangos!(tabajaralabs))  
