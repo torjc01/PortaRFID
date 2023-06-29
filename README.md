@@ -83,9 +83,9 @@ Placa de circuito impresso
 (Material para a integração do arduino)
 
 
-## Aplicaçao de Gestao de Acessos 
+## Aplicação de Gestão de Acessos 
 
-O software da aplicaçao de Gestao de Acessos é formado por três componentes principais: a base de dados PostgreSQL, responsavel por armazenar todas as entidades de dados geridas pelo sistema; uma API NestJS, responsavel por realizar a leitura dos dados disponiveis no banco de dados de acesso, bem como a atualizaçao desta base por pessoas autorizadas; 3. aplicaçao front-end, em framework a escolher, para facilitar o acesso dos usuarios às informaçoes mantidas na BD.
+O software da aplicação de Gestão de Acessos é formado por três componentes principais: a base de dados PostgreSQL, responsavel por armazenar todas as entidades de dados geridas pelo sistema; uma API NestJS, responsavel por realizar a leitura dos dados disponiveis no banco de dados de acesso, bem como a atualizaçao desta base por pessoas autorizadas; 3. aplicaçao front-end, em framework a escolher, para facilitar o acesso dos usuarios às informaçoes mantidas na BD.
 
 Para simplificar o desenvolvimento e a manutenibilidade da aplicaçao a longo prazo, ela sera desenvolvida e entregue conteneirizada, colocando em containers docker 
 
@@ -95,16 +95,40 @@ Para simplificar o desenvolvimento e a manutenibilidade da aplicaçao a longo pr
 
 ## Instalaçao 
 
-O software componente do sistema é mantido em uma base de dados PostgreSQL, e acessado via uma API backend em NestJS. Uma interface de usuario devera ser criada para facilitar o acesso aos dados 
+O software componente do sistema é mantido em uma base de dados PostgreSQL, e acessado via uma API backend em NestJS. Uma interface de usuario devera ser criada para facilitar o acesso aos dados. 
 
-docker exec -it my_container python omnidb-server.py --createsuperuser=admin pass
+Para a execução da aplicação nos containers, primeiro é necessário criar um arquivo chamado `.env` no diretório `docker/`, e informe os valores que você preferir para as variáveis de ambiente abaixo, que serão utilizadas para completar o docker-compose: 
 
-- Custos:  
+```
+APP=porta-
+SUFFIX=
+NETWORK=
+POSTGRES_USER=
+POSTGRES_PASSWORD=
+POSTGRES_DB=
+```
+
+Após a criação do arquivo, lance a aplicação com o comando seguinte: 
+
+```
+docker-compose up 
+```
+
+Logo após iniciar o container pela primeira vez, execute o comando seguinte para criar as credenciais no OmniDB: 
+
+```
+docker exec -it my_container python omnidb-server.py --createsuperuser=<nome usuario> <password>
+```
+
+
+
+## Custos:  
     Arduino: ~ R$100 --> Já temos (pra que arduino? Um atmega 8 resolve com um pé nas costas e custa 10 mangos!(tabajaralabs))  
     Trava eletrônica: ~ R$200 --> Tem uma na CCD  
     Leitor RFID Touchatag: ~ €30 ---> Comprado! Está na caixa do pitanga. (foi caro, tem aqui no BR por 50 reais (tabajaralabs))  
     Pacote de 25 tags RFID; ~ €25 (caso bilhete unico nao funcione) (tem chaveiros a 3 reais cada um (tabajaralabs))  
-- Interessados:    
+    
+## Interessados:    
     --Pitanga 12h34min de 3 de Agosto de 2010 (UTC)  
     --Aleph 01h58min de 4 de Agosto de 2010 (UTC)  
     --Felipe Bueno 10h38min de 29 de Abril de 2011 (UTC)  
