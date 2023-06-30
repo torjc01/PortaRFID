@@ -1,16 +1,20 @@
-# PortaRFID - Controle de Acesso por rádio 
+# PORTA RFID - Controle de Acesso por rádio identificação (Titulo e descrição)
 
 <div align="center">
     <img src="./images/Logo.png">
 </div>
 
-
 Colaboração para desenvolvimento do projeto Porta RFID. Conteúdo inicial copiado da página [Porta RFID, do Garoa Hacker Clube](https://garoa.net.br/wiki/Porta_RFID). 
 
 O novo conteúdo deste README.md será editado na branch [features/inicial](https://github.com/torjc01/PortaRFID/tree/features/inicial) e graduado para a branch `prod` gradualmente. 
 
-## O que é RFID
+# INDICE (Tabela de conteúdo)
 
+# GERAL
+## Visão geral 
+
+
+## O que é RFID?
 Um sistema RFID (`Radio Frequency Identification`) é composto de dois componentes principais: uma tag, que é apresentada ao sistema, e uma leitora, que faz a identificação da tag e encaminha os dados para tratamento adequado em um computador ou microcontroladora. 
 
 A leitora é constituida por um módulo de rádio emissor de um sinal de alta frequência e de uma antena. Por possuir alimentação elétrica própria é conhecido como dispositivo ativo da comunicação. 
@@ -19,7 +23,8 @@ A tag, por sua vez, é chamada de dispositivo passivo da comunicação, pois nã
 
 Em seguida há o processo conhecido como `backscatter`, quando o circuito da leitora detecta e decifra a informação emitida pela tag. A troca de informação se completa aí.
 
-## Porta RFID
+## Porta RFID 
+
 - Proposta: criar um sistema que permita a abertura de uma porta (ou qualquer outra coisa) através de uma tag rfid, como visto no London Hackspace
 - Ideia basica: um leitor RFID (touchatag) é ligado via USB a um computador. O computador lê o serial number da tag e consulta um banco de dados de membros com seu serial associado. Se o serial for válido, o computador, através de um arduino (ou qualquer outra coisa), aciona um relê, que por sua vez aciona uma trava eletrônica (tipo portão eletrônico), abrindo a porta
 - Caveat: em Londres eles usavam o Oyster (tipo bilhete único) como tag. Podemos ver se o bilhete único pode servir ao mesmo propósito (nao, nao serve, eu ja testei. O bilhete unico usa 13MHz e tecnologia MiFare, diferentaço e com direito a encriptacao. Obviamente moooito mais caro. (tabajaralabs))
@@ -28,7 +33,7 @@ Em seguida há o processo conhecido como `backscatter`, quando o circuito da lei
 - Vantagens: se alguém perder a chave não é preciso trocar a de todos
 
 ## Requisitos 
- 
+
 - Emissão de tag de acesso permanente para membros do Garoa 
 - Emissão de tag de acesso temporária com data/hora de expiração
 - Revogação de tags de acesso emitidas  
@@ -37,7 +42,9 @@ Em seguida há o processo conhecido como `backscatter`, quando o circuito da lei
     - VISITANTE: visita (acesso temporário)
     - PRESTADOR DE SERVIÇO: sob rendez-vous 
 
-## Beneficios 
+
+## Features
+## Benefícios
 
 - Gestão simplificada do controle de acessos 
     - atribuição de novos acessos 
@@ -48,13 +55,21 @@ Em seguida há o processo conhecido como `backscatter`, quando o circuito da lei
 - Mais de um tipo de acesso pode ser controlado pela mesma tag 
 - Possibilidade de fazer `BYOT` Bring your own tag: se a pessoa possuir uma tag pessoal, com frequência compatível ao sistema, é possivel atribuir acessos a esta tag. 
 
-### Diagrama de blocos 
 
+## Tecnologias utilizadas 
+
+# PRODUTO 
+
+## Iteracoes 
+
+# HARDWARE
+
+##    Diagrama de blocos 
 <div align="center">
     <img src="./images/DiagBlocs.png" width="800" />
 </div>
 
-## Lista de Materiais 
+##    Lista de Materiais 
 
 [Arduino Uno](https://ca.robotshop.com/products/arduino-uno-r3-usb-microcontroller?pr_prod_strat=collection_fallback&pr_rec_id=9e1056120&pr_rec_pid=7729821548695&pr_ref_pid=7728911941783&pr_seq=uniform) CAD 35.99
 
@@ -83,15 +98,16 @@ Led 5mm vermelho
 
 Led 5mm verde 
 
+##    Custos 
 
-Iteração 2: 
-Placa de circuito impresso 
-(Material para a integração do módulo relê)
-(Material para a integração do Arduino)
+    Arduino: ~ R$100 --> Já temos (pra que arduino? Um atmega 8 resolve com um pé nas costas e custa 10 mangos!(tabajaralabs))  
+    Trava eletrônica: ~ R$200 --> Tem uma na CCD  
+    Leitor RFID Touchatag: ~ €30 ---> Comprado! Está na caixa do pitanga. (foi caro, tem aqui no BR por 50 reais (tabajaralabs))  
+    Pacote de 25 tags RFID; ~ €25 (caso bilhete unico nao funcione) (tem chaveiros a 3 reais cada um (tabajaralabs))  
 
+# SOFTWARE 
 
-## Aplicação de Gestão de Acessos 
-
+##   Aplicação de Gestão de Acessos (Front-End, API, )
 O software da aplicação de Gestão de Acessos é formado por três componentes principais: 
 - a base de dados PostgreSQL; 
  responsavel por armazenar todas as entidades de dados geridas pelo sistema;
@@ -106,7 +122,9 @@ Para simplificar o desenvolvimento e a manutenibilidade da aplicaçao a longo pr
     <img src="./images/ArqSoftware.png" width="800" />
 </div>
 
-## Instalaçao 
+
+###        Dependências  
+###        Instalação
 
 Os dados do sistema são mantidos em uma base de dados PostgreSQL, e acessados via uma API backend em NestJS. Uma interface de usuário deverá ser criada para facilitar o acesso a estes dados. 
 
@@ -133,18 +151,34 @@ Logo após iniciar o container pela primeira vez, execute o comando seguinte par
 docker exec -it my_container python omnidb-server.py --createsuperuser=<nome usuario> <password>
 ```
 
+###  Utilização 
+###  Implantação produção 
+###  Screenshots e fotos 
+##   Firmware 
+###  Dependências  
+###  Instalação
+###  Utilização 
+###  Implantação produção 
+###  Screenshots e fotos
 
+# FINAL 
+##    Gestão de versões 
+##    Outros recursos e docs importantes 
+##    Troubleshooting
+##    Problemas conhecidos
+##    Onde encontrar ajuda 
+##    Contribuir 
+##    Interessados 
 
-## Custos:  
-    Arduino: ~ R$100 --> Já temos (pra que arduino? Um atmega 8 resolve com um pé nas costas e custa 10 mangos!(tabajaralabs))  
-    Trava eletrônica: ~ R$200 --> Tem uma na CCD  
-    Leitor RFID Touchatag: ~ €30 ---> Comprado! Está na caixa do pitanga. (foi caro, tem aqui no BR por 50 reais (tabajaralabs))  
-    Pacote de 25 tags RFID; ~ €25 (caso bilhete unico nao funcione) (tem chaveiros a 3 reais cada um (tabajaralabs))  
-
-## Interessados:    
     --Pitanga 12h34min de 3 de Agosto de 2010 (UTC)  
     --Aleph 01h58min de 4 de Agosto de 2010 (UTC)  
     --Felipe Bueno 10h38min de 29 de Abril de 2011 (UTC)  
     --Alexandre Souza 16h04min de 26 de Julho de 2011 (UTC)  
     --Haoji 04h32min de 11 de Agosto de 2013 (UTC)  
     -- Paulo F. Manasia 10h48min de 22 de Setembro de 2014 (UTC)  
+
+##    Licença
+
+##    Agradecimentos
+
+##    Referências 
