@@ -1,4 +1,4 @@
-# PORTA RFID - Controle de Acesso por rádio identificação (Titulo e descrição)
+# PORTA RFID - Controle de Acesso por rádio identificação 
 
 <div align="center">
     <img src="./images/Logo.png">
@@ -8,9 +8,10 @@ Colaboração para desenvolvimento do projeto Porta RFID. Conteúdo inicial copi
 
 O novo conteúdo deste README.md será editado na branch [features/inicial](https://github.com/torjc01/PortaRFID/tree/features/inicial) e graduado para a branch `prod` gradualmente. 
 
-# INDICE (Tabela de conteúdo)
+# Tabela de conteúdo
 
-# GERAL
+
+
 ## Visão geral 
 
 
@@ -58,16 +59,18 @@ Em seguida há o processo conhecido como `backscatter`, quando o circuito da lei
 
 ## Tecnologias utilizadas 
 
-# PRODUTO 
+# Produto 
 
-## Iteracoes 
+## Iterações 
 
-# HARDWARE
+# Hardware
 
 ##    Diagrama de blocos 
 <div align="center">
     <img src="./images/DiagBlocs.png" width="800" />
 </div>
+
+## Schematics e PCB 
 
 ##    Lista de Materiais 
 
@@ -105,9 +108,10 @@ Led 5mm verde
     Leitor RFID Touchatag: ~ €30 ---> Comprado! Está na caixa do pitanga. (foi caro, tem aqui no BR por 50 reais (tabajaralabs))  
     Pacote de 25 tags RFID; ~ €25 (caso bilhete unico nao funcione) (tem chaveiros a 3 reais cada um (tabajaralabs))  
 
-# SOFTWARE 
+# Software 
 
-##   Aplicação de Gestão de Acessos (Front-End, API, )
+##   Aplicação de Gestão de Acessos (Front-End, API, Banco de dados)
+
 O software da aplicação de Gestão de Acessos é formado por três componentes principais: 
 - a base de dados PostgreSQL; 
  responsavel por armazenar todas as entidades de dados geridas pelo sistema;
@@ -124,6 +128,13 @@ Para simplificar o desenvolvimento e a manutenibilidade da aplicaçao a longo pr
 
 
 ###        Dependências  
+
+- Docker 
+- Docker-compose 
+- Node.js
+- NestJS
+
+
 ###        Instalação
 
 Os dados do sistema são mantidos em uma base de dados PostgreSQL, e acessados via uma API backend em NestJS. Uma interface de usuário deverá ser criada para facilitar o acesso a estes dados. 
@@ -155,7 +166,12 @@ docker exec -it my_container python omnidb-server.py --createsuperuser=<nome usu
 ###  Implantação produção 
 ###  Screenshots e fotos 
 ##   Firmware 
-###  Dependências  
+###  Dependências 
+
+- Arduino IDE 
+- Biblioteca RFID 
+- Biblioteca WiFi 
+
 ###  Instalação
 ###  Utilização 
 ###  Implantação produção 
@@ -179,6 +195,8 @@ docker exec -it my_container python omnidb-server.py --createsuperuser=<nome usu
 
 ##    Licença
 
+
 ##    Agradecimentos
+
 
 ##    Referências 
