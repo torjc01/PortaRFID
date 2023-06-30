@@ -35,6 +35,7 @@ Em seguida há o processo conhecido como `backscatter`, quando o circuito da lei
 
 ## Requisitos 
 
+- Emissão imediata de novos acessos
 - Emissão de tag de acesso permanente para membros do Garoa 
 - Emissão de tag de acesso temporária com data/hora de expiração
 - Revogação de tags de acesso emitidas  
@@ -45,16 +46,26 @@ Em seguida há o processo conhecido como `backscatter`, quando o circuito da lei
 
 
 ## Features
+
+- Segurança e proteção criptográficas. 
+- Verificação rápida dp acesso do cliente
+- Mensageria: troca de mensagens com cliente que possui credendial de acesso
+- Gestão de acessos facilitada 
+
 ## Benefícios
 
-- Gestão simplificada do controle de acessos 
+- Gestão e apresentação simples e intuitiva de cartões de acesso:
     - atribuição de novos acessos 
     - controle de acessos temporários 
     - revogação de acessos
-- Elimina necessidade de trocar a chave de todos quando alguém perde sua chave pessoal, o que implica em economia em compra de material 
+- Flexibilidade: A solução pode ser usada pelos membros, trabalhadores, fornecedores e visitantes. Também permite a gestão de acessos baseada em atributos ou papéis a diferentes tipos de locais ou recursos físicos
+- Eficiência de custos: 
+    - Elimina necessidade de trocar a chave de todos quando alguém perde sua chave pessoal, o que implica em economia em compra de material 
+    - Não há a necessidade de gerenciar cartões de plástico ou desenvolver uma aplicação separada para este objetivo.
 - Duplicatas podem ser geradas para os que desejarem possuir uma tag de backup 
 - Mais de um tipo de acesso pode ser controlado pela mesma tag 
-- Possibilidade de fazer `BYOT` Bring your own tag: se a pessoa possuir uma tag pessoal, com frequência compatível ao sistema, é possivel atribuir acessos a esta tag. 
+- Possibilidade de fazer `BYOT` Bring your own tag: se a pessoa possuir uma tag pessoal, com frequência compatível ao sistema, é possivel atribuir acessos a esta tag
+
 
 
 ## Tecnologias utilizadas 
