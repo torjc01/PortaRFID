@@ -5,17 +5,19 @@
 </div>
 
 
-Colaboração para desenvolvimento de o do projeto Porta RFID. Conteúdo inicial copiado da página [Porta RFID, do Garoa Hacker Clube](https://garoa.net.br/wiki/Porta_RFID). 
+Colaboração para desenvolvimento do projeto Porta RFID. Conteúdo inicial copiado da página [Porta RFID, do Garoa Hacker Clube](https://garoa.net.br/wiki/Porta_RFID). 
 
-O novo conteúdo deste README.md será editado na branch [features/inicial](https://github.com/torjc01/PortaRFID/tree/features/inicial). 
+O novo conteúdo deste README.md será editado na branch [features/inicial](https://github.com/torjc01/PortaRFID/tree/features/inicial) e graduado para a branch `prod` gradualmente. 
 
 ## O que é RFID
 
-Um sistema RFID `Radio Frequency Identification` é composto de dois componentes principais: uma tag, que se apresenta ao sistema, e uma leitora, que faz a identificaçao da tag e encaminha os dados para tratamento adequado. 
+Um sistema RFID (`Radio Frequency Identification`) é composto de dois componentes principais: uma tag, que é apresentada ao sistema, e uma leitora, que faz a identificação da tag e encaminha os dados para tratamento adequado em um computador ou microcontroladora. 
 
-A leitora é constituida de um modulo de radio, emissor de um sinal de alta frequencia e de uma antena. Por possuir alimentaçao elétrica propria é conhecido como dispositivo ativo da comunicacao. 
+A leitora é constituida por um módulo de rádio emissor de um sinal de alta frequência e de uma antena. Por possuir alimentação elétrica própria é conhecido como dispositivo ativo da comunicação. 
 
-A tag, por sua vez, é chamada de dispositivo passivo da comunicaçao, pois nao dispoe de nenhuma fonte de energia propria. Ela depende do campo magnético criado pelo sinal emitido pela leitora para energizar o seu circuito e assim estabelecer a conexao e a troca de mensagens. 
+A tag, por sua vez, é chamada de dispositivo passivo da comunicação, pois não dispõe de nenhuma fonte de energia própria. Ela é composta por um microchip que registra e processa informação, além de uma antena. Ela depende do campo magnético criado pela aproximação com a leitora para energizar o seu circuito e assim estabelecer a conexão e a troca de mensagens. 
+
+Em seguida há o processo conhecido como `backscatter`, quando o circuito da leitora detecta e decifra a informação emitida pela tag. A troca de informação se completa aí.
 
 ## Porta RFID
 - Proposta: criar um sistema que permita a abertura de uma porta (ou qualquer outra coisa) através de uma tag rfid, como visto no London Hackspace
@@ -27,26 +29,24 @@ A tag, por sua vez, é chamada de dispositivo passivo da comunicaçao, pois nao 
 
 ## Requisitos 
  
-- Emissao de tag de acesso permanente para membros do Garoa 
-- Emissao de tag de acesso temporaria com data/hora de expiraçao
-- Revogaçao de tags emitidas  
+- Emissão de tag de acesso permanente para membros do Garoa 
+- Emissão de tag de acesso temporária com data/hora de expiração
+- Revogação de tags de acesso emitidas  
 - Casos de uso : 
-    - MEMBROS: acesso principal 
-    - VISITANTE: visita (acesso temporario)
-    - PRESTADOR DE SERVIÇO: rendez-vous 
+    - MEMBROS: acesso principal; sem expiração 
+    - VISITANTE: visita (acesso temporário)
+    - PRESTADOR DE SERVIÇO: sob rendez-vous 
 
 ## Beneficios 
 
-- Gestao simplificada da gestao de acessos 
-    - atribuicao de novos acessos 
-    - controle de acessos temporarios 
-    - revogacao de acessos
-- Elimina necessidade de trocar a chave de todos quando alguém perde sua chave pessoal >> economia em compra de material 
+- Gestão simplificada do controle de acessos 
+    - atribuição de novos acessos 
+    - controle de acessos temporários 
+    - revogação de acessos
+- Elimina necessidade de trocar a chave de todos quando alguém perde sua chave pessoal, o que implica em economia em compra de material 
 - Duplicatas podem ser geradas para os que desejarem possuir uma tag de backup 
 - Mais de um tipo de acesso pode ser controlado pela mesma tag 
-- Possibilidade de fazer `BYOT` Bring your own tag: se a pessoa possuir uma tag, é possivel atribuir acessos a esta tag. 
-
-
+- Possibilidade de fazer `BYOT` Bring your own tag: se a pessoa possuir uma tag pessoal, com frequência compatível ao sistema, é possivel atribuir acessos a esta tag. 
 
 ### Diagrama de blocos 
 
@@ -61,6 +61,13 @@ A tag, por sua vez, é chamada de dispositivo passivo da comunicaçao, pois nao 
 [Node MCU](https://www.electromike.com/plaquette-nodemcu-v3-lua-iot-esp8266-wifi-arduino-nodemcu-lua.html) CAD 9.99
 
 [Módulo RFID RC522](https://ca.robotshop.com/products/mifare-rc522-module-rfid-reader) CAD 13.75
+
+    **Especificações técnicas** 
+
+        Frequência: 125 MHz  
+        Interface com host: SPI  
+        Voltagem operacional: 2.5 - 3.3V    
+        Distância de leitura: até 3cm  
 
 [Módulo Relê HL-525 v1.0](https://www.canadarobotix.com/products/1347) CAD 5.09
 
@@ -80,14 +87,20 @@ Led 5mm verde
 Iteração 2: 
 Placa de circuito impresso 
 (Material para a integração do módulo relê)
-(Material para a integração do arduino)
+(Material para a integração do Arduino)
 
 
 ## Aplicação de Gestão de Acessos 
 
-O software da aplicação de Gestão de Acessos é formado por três componentes principais: a base de dados PostgreSQL, responsavel por armazenar todas as entidades de dados geridas pelo sistema; uma API NestJS, responsavel por realizar a leitura dos dados disponiveis no banco de dados de acesso, bem como a atualizaçao desta base por pessoas autorizadas; 3. aplicaçao front-end, em framework a escolher, para facilitar o acesso dos usuarios às informaçoes mantidas na BD.
+O software da aplicação de Gestão de Acessos é formado por três componentes principais: 
+- a base de dados PostgreSQL; 
+ responsavel por armazenar todas as entidades de dados geridas pelo sistema;
+ - uma API NestJS, 
+ responsavel por realizar a leitura dos dados disponiveis no banco de dados de acesso, bem como a atualizaçao desta base por pessoas autorizadas; 
+- aplicaçao front-end,
+ em framework a escolher, para facilitar o acesso dos usuários às informações mantidas na BD.
 
-Para simplificar o desenvolvimento e a manutenibilidade da aplicaçao a longo prazo, ela sera desenvolvida e entregue conteneirizada, colocando em containers docker 
+Para simplificar o desenvolvimento e a manutenibilidade da aplicaçao a longo prazo, ela sera desenvolvida e entregue conteneirizada, colocando em containers docker cada um dos componentes do sistema. Abaixo está ilustrada uma arquitetura proposta para o software.
 
 <div align="center">
     <img src="./images/ArqSoftware.png" width="800" />
@@ -95,7 +108,7 @@ Para simplificar o desenvolvimento e a manutenibilidade da aplicaçao a longo pr
 
 ## Instalaçao 
 
-O software componente do sistema é mantido em uma base de dados PostgreSQL, e acessado via uma API backend em NestJS. Uma interface de usuario devera ser criada para facilitar o acesso aos dados. 
+Os dados do sistema são mantidos em uma base de dados PostgreSQL, e acessados via uma API backend em NestJS. Uma interface de usuário deverá ser criada para facilitar o acesso a estes dados. 
 
 Para a execução da aplicação nos containers, primeiro é necessário criar um arquivo chamado `.env` no diretório `docker/`, e informe os valores que você preferir para as variáveis de ambiente abaixo, que serão utilizadas para completar o docker-compose: 
 
@@ -127,7 +140,7 @@ docker exec -it my_container python omnidb-server.py --createsuperuser=<nome usu
     Trava eletrônica: ~ R$200 --> Tem uma na CCD  
     Leitor RFID Touchatag: ~ €30 ---> Comprado! Está na caixa do pitanga. (foi caro, tem aqui no BR por 50 reais (tabajaralabs))  
     Pacote de 25 tags RFID; ~ €25 (caso bilhete unico nao funcione) (tem chaveiros a 3 reais cada um (tabajaralabs))  
-    
+
 ## Interessados:    
     --Pitanga 12h34min de 3 de Agosto de 2010 (UTC)  
     --Aleph 01h58min de 4 de Agosto de 2010 (UTC)  
