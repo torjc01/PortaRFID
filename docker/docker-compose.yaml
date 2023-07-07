@@ -21,6 +21,32 @@ services:
     networks: 
       - ${NETWORK} 
 
+  node-red:
+    image: nodered/node-red:latest
+    container_name: ${APP}-node-red-${SUFFIX}
+    environment:
+      - TZ=${TIMEZONE}
+    networks:
+      - ${NETWORK} 
+    ports:
+      - 1880:1880
+    volumes:
+      - ./.nodered/data:/data
+
+  mosquitto:
+    image: eclipse-mosquitto
+    container_name: ${APP}-mosquitto-${SUFFIX}
+    networks:
+      - ${NETWORK} 
+    ports:
+      - 1833:1833
+      - 9001:9001
+    volumes:
+      - ./.mosquitto:/mosquitto
+      - ./.mosquitto/data:/mosquitto/data
+      - ./.mosquitto/log:/mosquitto/log
+
+
 networks:
   garoa-net:
     driver: bridge
