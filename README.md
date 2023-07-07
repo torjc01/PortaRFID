@@ -267,10 +267,11 @@ Gostaria de agradecer e de dar crédito às bibliotecas abaixo, as quais foram u
 
 
 ##    Referências 
-
+### Bibliografia  
 *Graafstra, Amal.* **RFID Toys.** Wiley Publishing: Indianapolis, 2006.  
 *IGOE, Tom.* **Beginning NFC: Near Field Communication with Adruino, Android & PhoneGAP.** O'Reilly: Sebastopol, 2014.  
 *Norris, Donald.* **Projets créatifs avec Raspberry Pi.** Pearson France: Montreuil, 2014. 
 
+### Sites web
 [Paradox](https://www.paradox.ca) - empresa quebecoise, especializada na fabricação de sistemas de segurança, possível interessada na gestão de acessos.  
 [Alarme Provinciale](https://www.alarmeprovinciale.com) - empresa quebecoise, varejista na venda, instalaçãoo e manutenção de sistemas de segurança física.
