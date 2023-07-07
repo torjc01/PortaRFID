@@ -1,8 +1,12 @@
+<!-- Header --> 
+
 # PORTA RFID - Controle de Acesso por rádio identificação 
 
 <div align="center">
     <img src="./images/Logo.png">
 </div>
+<!-- Fim do Header -->
+
 
 Colaboração para desenvolvimento do projeto Porta RFID. Conteúdo inicial copiado da página [Porta RFID, do Garoa Hacker Clube](https://garoa.net.br/wiki/Porta_RFID). 
 
@@ -12,24 +16,76 @@ O novo conteúdo deste README.md será editado na branch [features/inicial](http
 
 
 
-## Visão geral 
-
+## Tecnologia RFID - Visão geral 
 
 ## O que é RFID?
-Um sistema RFID (`Radio Frequency Identification`) é a soma de dois componentes principais: uma tag que é apresentada ao sistema, e uma leitora que faz a identificação da tag e encaminha os dados para tratamento adequado em um computador ou microcontrolador. 
+Um sistema RFID (`Radio Frequency Identification`) é a soma de alguns componentes principais: tags, antenas, leitoras e sistemas de informação.  que é apresentada ao sistema, e uma leitora que faz a identificação da tag e encaminha os dados para tratamento adequado em um computador ou microcontrolador. 
 
-A leitora é constituida por um módulo de rádio emissor de sinal de alta frequência e de uma antena. Por possuir alimentação elétrica própria é conhecida como dispositivo ativo da comunicação. 
+A leitora é constituida por um módulo de rádio emissor de sinal de determinada frequência e de uma antena. Por possuir alimentação elétrica própria é conhecida como dispositivo ativo da comunicação. Ela recebe a onda de rádio e a converte em dados digitais que serão tratados e armazenados por um sistema de informação. Existem dois tipos de leitoras: fixas, que são instaladas em um ambiente, e móveis, que podem ser levadas para ... 
 
-A tag, por sua vez, é chamada de dispositivo passivo da comunicação, pois normalmente não dispõe de nenhuma fonte de energia própria. Ela é composta por um microchip que registra e processa informação, além de uma antena. Ela depende do campo magnético criado pela aproximação com a leitora para energizar o seu circuito e assim estabelecer a conexão e a troca de mensagens. Existem tags ativas, mas elas são utilizadas para casos de uso especiais em que a tag deve ser localizada a uma longa distância. 
+A tag, por sua vez, é chamada de dispositivo passivo da comunicação, pois normalmente não dispõe de nenhuma fonte de energia própria. Ela é composta por um microchip que registra e processa informação, além de uma antena. Ela depende do campo magnético criado pela aproximação com a leitora para energizar o seu circuito e assim estabelecer a conexão e a troca de dados, de sua ID e de dados programáveis caso estejam disponíveis. Existem tags ativas, mas elas são utilizadas para casos de uso especiais em que a tag deve ser localizada a uma longa distância. 
 
-Em seguida há o processo conhecido como `backscatter`, quando o circuito da leitora detecta e decifra a informação emitida pela tag. A troca de informação se completa aí.
+As antenas permitem o estabelecimento da comunicação entre tags e leitoras. Elas podem ser integradas ao circuito da leitora, ou podem ser externas, para facilitar a instalação física. Sem uma antena, a leitora não seria capaz de receber as ondas de rádio, nem transmitir informação. 
+
+O sistema de informação, por sua vez, é necessário para fazer o tratamento dos dados e armazená-los em banco de dados. O sistema de informação deve ser capaz de programar tags, gerenciar dispositivos e dados, fazer monitoramento remoto de tags e a configuração do hardware. 
+
+
+## RFID Tags: Categorias frenquencias e aplicações 
+
+No mercado existem múltiplas opções de tags, que variam conforme as frequências dos diferentes campos eletromagnéticos que elas foram projetadas para operar. Existem 3 categorias principais de tags: baixa frequência (low frequency - LF), alta frequência (high frequency - HF) e ultra-alta frequência (ultra-high frequency - UHF). 
+
+1. **Low frequency tags (LF)** 
+
+- campo geral de frequência: de 30 KHz até 300 KHz
+- campo primário de frequência: de 125 KHz até 134 KHz
+- campo de leiura: quase contato até 10cm  
+- tem a menor capacidade de transferência de dados de todas as tags RFID
+- armazena uma pequena quantidade de dados 
+- custo médio da tag: de $0,75 a $5,00  
+
+Aplicações: rastreio animal, controle de acesso, keyfob de carros, rastreio de bens. 
+
+2. **High frequency tags (HF)**
+
+- campo primário de frequência: 13,56 MHz
+- campo de leitura: quase contato até 30cm 
+- podem ser lidas múltiplas tags simultaneamente
+- armazenam até 4Kb de dados 
+- podem ser facilmente lidas próximo a água, tecidos, metais, madeira, corpo humano.    
+- custo médio da tag: $0,20 a $10,00 
+
+Aplicações: Livros de biblioteca, cartões de identificação pessoal, bagagem despachada, cartões de crédito, chips de poker, aplicações NFC. 
+
+3. **Ultra-high frequency tags (UHF)**
+
+Existem dois diferentes padrões de tags UFH: ativas e passivas 
+
+3.1. **UHF passive tags**
+
+- campo primário de frequência: de 860 MHz a 960 MHz
+- campo de leitura: quase contato até 25m 
+- alta capacidade de transferência de dados 
+- grande variedade de encapsulamento e tamanhos 
+- custo médio da tag: $0,09 a $20,00
+
+Aplicações: rastreio de supply chain, manufatura, indústria farmaceutica, pedágio eletrônico, rastreio de estoque, contagem de tempo em corridas, rastreio de bens. 
+
+3.2 **UHF active tags** 
+
+- campo primário de frequência: de 433 MHz
+- campo de leitura: quase contato até mais de 100m 
+- grande capacidade de memória 
+- alta capacidade de transferência de dados 
+- custo médio da tag: $25,00 a $50,00
+
+Aplicações: rastreio de veículos, manufatura automobilistica, construção, mineiração, rastreio de bens. 
 
 
 **RFID: Frequências, usos e distâncias típicas**
 
 |Frequência|Tipo|Uso|Pros and contras|Distância|
 |---------------|------|----------|---------------|--------|
-|125-148 KHz|Passivo|Rastreio animal (ISO11784/11785), control de acesso, e aplicações OEM| Sinal negocia bem em liquidos e metais. Maoir custo da tag por causa do longo tamanho da antena de cobre. |1,5cm a 10cm é típico. 15cm a 30cm ou mais é possível com equipamento especializado.|
+|125-148 KHz|Passivo|Rastreio animal (ISO11784/11785), controle de acesso, e aplicações OEM| Sinal negocia bem em liquidos e metais. Maoir custo da tag por causa do longo tamanho da antena de cobre. |1,5cm a 10cm é típico. 15cm a 30cm ou mais é possível com equipamento especializado.|
 |13.56 MHz|Passivo|EAS(anti-furto), livros e gestão documental, controle de acesso, aplicações OEM |Antenas podem ser impressas em substrato, diminuindo os custos da tag. Interferência severa causada por metal.| Pode ser de alguns centímetros até vários metros, dependendo do hardware da leitora e do tipo de tag.|
 |433 MHz (and 2.5 GHz)|Ativo|Sistemas de pagamento de pedágio, gestão de veículos/frota, acompanhamento de bens etc. | Longa distância. Custo da tag muito alto. Utiliza bateria, portanto tags têm uma vida útil definida (geralmente 5 anos). | Normalmente ao redor de 10 metros, mas pode alcançar até uma centena de metros.|
 |915 MHz|Passivo|Acompanhamento de supply chain e aplicações OEM|Tags muito baratas. Longa distância. Recurso anti-colisão permite a leitura de diversas tags simultâneas. Interferência grave de líquidos e do corpo humano| Em torno de 3m de uma antena única ou de 6m entre duas antenas. Distâncias mais longas podem ser feitas com hardware especial.
@@ -172,7 +228,6 @@ integrado, eliminando a necessidade do módulo; impressão de cobertura para a i
 - [Módulo RFID RC522](https://ca.robotshop.com/products/mifare-rc522-module-rfid-reader) CAD 13.75
 
     **Especificações técnicas** 
-
         Frequência: 125 MHz  
         Interface com host: SPI  
         Voltagem operacional: 2.5 - 3.3V    
@@ -317,4 +372,6 @@ Também digno de menção é o software de exploração de banco de dados OmniDB
 ### Sites web
 [Paradox](https://www.paradox.ca) - empresa quebecoise, especializada na fabricação de sistemas de segurança, possível interessada na gestão de acessos.  
 [Alarme Provinciale](https://www.alarmeprovinciale.com) - empresa quebecoise, varejista na venda, instalaçãoo e manutenção de sistemas de segurança física.  
-[Documenting work: https://github.com/torjc01/DocumentingWork](https://github.com/torjc01/DocumentingWork) - minha reescritura de um artigo antigo da revista `Make` que fornece orientações particularmente interessantes e úteis para a documentação de todo tipo de projeto. 
+[Documenting work: https://github.com/torjc01/DocumentingWork](https://github.com/torjc01/DocumentingWork) - minha reescritura de um artigo antigo da revista `Make` que fornece orientações particularmente interessantes e úteis para a documentação de todo tipo de projeto.  
+[TT Electronics](https://blog.ttelectronics.com/rfid-technology) - blog sobre RFID  
+[Atlas RFID Store](https://atlasrfidstore.com) - companhia especializada em equipamentos para RFID  
