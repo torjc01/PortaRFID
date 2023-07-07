@@ -114,6 +114,43 @@ A componente `INFRA` engloba partes que dependem da infra-estrutura das instala�
 
 ## Iterações 
 
+### MVP Mininum viable product (Produto mínimo viável)
+
+Para a primeira iteração, entregaremos um produto mínimo, mas que é suficiente para realizar a prova de conceito do projeto, que servirá de base para 
+as outras iterações. Estas etapas seguintes entregarão a evolução do produto, conforme evoluir a especificação dos requisitos. 
+
+Na primeira entrega, o circuito será montado sobre breadboard e ligado via jumpers. Ele será composto por um módulo NodeMCU, que será encarregado da interface com os outros componentes do sistema (módulos RFID e relê), bem como da tarefa de processamento das requisições de validação de acesso feitas ao software. 
+
+O software também terá o mínimo necessário para o funcionamento da validação de acessos. Ele terá o cadastro das portas e um cadastro de cartões associados a uma pessoa. Sob requisição, o software receberá a identificação da porta, a identificação do cartão e verificará se esta relação de acesso existe. 
+
+O software de cadastro não será criado para o MVP. O cadastro será feito via API da base de dados backend, por um dos dois canais: OpenAPI do Swagger, ou via coleção do Insomnia.  
+
+**Lista de materiais para o MVP** 
+- NodeMCU
+- Módulo RFID
+- Módulo relê
+- Buzzer ou alto falantes de 8 ohms
+- Componentes discretos: leds, resistores, capacitores, fios jumper
+- Breadboard
+
+**Dados tratados pelo software no MVP**
+
+- **Pessoa:** codigo, nome, sobrenome, numeroID 
+- **Porta:** codigo, designacaoPorta
+- **Acesso:** codigoPessoa, codigoPorta
+
+
+### Iterações seguintes
+
+As iterações seguintes serão plaejadas conforme evoluir a especificação dos requisitos. 
+
+No entanto, algumas evoluções já estão previstas para as proximas etapas. 
+
+- **Circuito:** criação de placa de circuito impresso, em substituição à breadboard e jumpers do protótipo; 
+- **Software:** criação de app de cadastro e manutenção dos acessos; frontend Angular; 
+- **Banco de dados:** criação de um modelo de dados para implementação de sistema de acesso RBAC ou semelhante; registro de log de acessos;    
+- **Firmware:** evolução do firmware para adaptação às novas funcionalidades. 
+
 # Hardware
 
 ##    Diagrama de blocos 
