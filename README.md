@@ -129,7 +129,9 @@ O software de cadastro não será criado para o MVP. O cadastro será feito via 
 - NodeMCU
 - Módulo RFID
 - Módulo relê
-- Buzzer ou alto falantes de 8 ohms
+- Buzzer ou alto falantes de 8Ω
+- Adaptador de tensão de 9V, 2A
+- Conector Jack 2,5mm 
 - Componentes discretos: leds, resistores, capacitores, fios jumper
 - Breadboard
 
@@ -146,7 +148,8 @@ As iterações seguintes serão plaejadas conforme evoluir a especificação dos
 
 No entanto, algumas evoluções já estão previstas para as proximas etapas. 
 
-- **Circuito:** criação de placa de circuito impresso, em substituição à breadboard e jumpers do protótipo; 
+- **Circuito:** criação de placa de circuito impresso, em substituição à breadboard e jumpers do protótipo; integração do módulo relê à placa de circuito
+integrado, eliminando a necessidade do módulo;
 - **Software:** criação de app de cadastro e manutenção dos acessos; frontend Angular; 
 - **Banco de dados:** criação de um modelo de dados para implementação de sistema de acesso RBAC ou semelhante; registro de log de acessos;    
 - **Firmware:** evolução do firmware para adaptação às novas funcionalidades. 
@@ -162,11 +165,11 @@ No entanto, algumas evoluções já estão previstas para as proximas etapas.
 
 ##    Lista de Materiais 
 
-[Arduino Uno](https://ca.robotshop.com/products/arduino-uno-r3-usb-microcontroller?pr_prod_strat=collection_fallback&pr_rec_id=9e1056120&pr_rec_pid=7729821548695&pr_ref_pid=7728911941783&pr_seq=uniform) CAD 35.99
+- [Arduino Uno](https://ca.robotshop.com/products/arduino-uno-r3-usb-microcontroller?pr_prod_strat=collection_fallback&pr_rec_id=9e1056120&pr_rec_pid=7729821548695&pr_ref_pid=7728911941783&pr_seq=uniform) CAD 35.99
 
-[Node MCU](https://www.electromike.com/plaquette-nodemcu-v3-lua-iot-esp8266-wifi-arduino-nodemcu-lua.html) CAD 9.99
+- [Node MCU](https://www.electromike.com/plaquette-nodemcu-v3-lua-iot-esp8266-wifi-arduino-nodemcu-lua.html) CAD 9.99
 
-[Módulo RFID RC522](https://ca.robotshop.com/products/mifare-rc522-module-rfid-reader) CAD 13.75
+- [Módulo RFID RC522](https://ca.robotshop.com/products/mifare-rc522-module-rfid-reader) CAD 13.75
 
     **Especificações técnicas** 
 
@@ -175,19 +178,17 @@ No entanto, algumas evoluções já estão previstas para as proximas etapas.
         Voltagem operacional: 2.5 - 3.3V    
         Distância de leitura: até 3cm  
 
-[Módulo Relê HL-525 v1.0](https://www.canadarobotix.com/products/1347) CAD 5.09
+- [Módulo Relê HL-525 v1.0](https://www.canadarobotix.com/products/1347) CAD 5.09
 
-Conector Jack 2.5mm 
+- Fechadura elétrica Solenóide 12 V 
 
-Adaptador de corrente 9V 2A 
+- Conector Jack 2.5mm 
 
-Buzzer ou Speaker 8 Ohms 
+- Adaptador de corrente 9V 2A 
 
-Fechadura elétrica Solenóide 12 V 
+- Buzzer ou Speaker 8Ω
 
-Led 5mm vermelho 
-
-Led 5mm verde 
+- Led 5mm vermelho, Led 5mm verde, resistores, capacitores.  
 
 ##    Custos 
 
@@ -299,7 +300,7 @@ Gostaria de agradecer e de dar crédito às bibliotecas abaixo, as quais foram u
 - Biblioteca RFID MFRC522 e seu autor, `Miguel Balboa`: 
     - [MFRC522 library: https://github.com/miguelbalboa/rfid](https://github.com/miguelbalboa/rfid)
 - Biblioteca WiFi e ao `ESP8266 Community Forum` 
-    - [ESP8266WiFi library: https://github.com/esp8266/Arduino](https://github.com/esp8266/Arduino)    
+    - [ESP8266WiFi library: https://github.com/esp8266/Arduino](https://github.com/esp8266/Arduino)    https://github.com/torjc01/DocumentingWork
 
 
 
@@ -311,4 +312,5 @@ Gostaria de agradecer e de dar crédito às bibliotecas abaixo, as quais foram u
 
 ### Sites web
 [Paradox](https://www.paradox.ca) - empresa quebecoise, especializada na fabricação de sistemas de segurança, possível interessada na gestão de acessos.  
-[Alarme Provinciale](https://www.alarmeprovinciale.com) - empresa quebecoise, varejista na venda, instalaçãoo e manutenção de sistemas de segurança física.
+[Alarme Provinciale](https://www.alarmeprovinciale.com) - empresa quebecoise, varejista na venda, instalaçãoo e manutenção de sistemas de segurança física.  
+[Documenting work: https://github.com/torjc01/DocumentingWork](https://github.com/torjc01/DocumentingWork) - minha reescritura de um artigo antigo da revista `Make` que fornece orientações particularmente interessantes e úteis para a documentação de todo tipo de projeto. 
