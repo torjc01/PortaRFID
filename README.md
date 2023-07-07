@@ -18,7 +18,7 @@ O novo conteúdo deste README.md será editado na branch [features/inicial](http
 ## O que é RFID?
 Um sistema RFID (`Radio Frequency Identification`) é a soma de dois componentes principais: uma tag que é apresentada ao sistema, e uma leitora que faz a identificação da tag e encaminha os dados para tratamento adequado em um computador ou microcontrolador. 
 
-A leitora é constituida por um módulo de rádio emissor de sinal de alta frequência e de uma antena. Por possuir alimentação elétrica própria é conhecido como dispositivo ativo da comunicação. 
+A leitora é constituida por um módulo de rádio emissor de sinal de alta frequência e de uma antena. Por possuir alimentação elétrica própria é conhecida como dispositivo ativo da comunicação. 
 
 A tag, por sua vez, é chamada de dispositivo passivo da comunicação, pois normalmente não dispõe de nenhuma fonte de energia própria. Ela é composta por um microchip que registra e processa informação, além de uma antena. Ela depende do campo magnético criado pela aproximação com a leitora para energizar o seu circuito e assim estabelecer a conexão e a troca de mensagens. Existem tags ativas, mas elas são utilizadas para casos de uso especiais em que a tag deve ser localizada a uma longa distância. 
 
@@ -30,9 +30,9 @@ Em seguida há o processo conhecido como `backscatter`, quando o circuito da lei
 |Frequência|Tipo|Uso|Pros and contras|Distância|
 |---------------|------|----------|---------------|--------|
 |125-148 KHz|Passivo|Rastreio animal (ISO11784/11785), control de acesso, e aplicações OEM| Sinal negocia bem em liquidos e metais. Maoir custo da tag por causa do longo tamanho da antena de cobre. |1,5cm a 10cm é típico. 15cm a 30cm ou mais é possível com equipamento especializado.|
-|13.56 MHz|Passivo|EAS(anti-furto), livro e gestão documental, controle de acesso, aplicações OEM |Antenas podem ser impressas em substrato, diminuindo os custos da tag. Interferência severa causada por metal.| Pode ser de alguns centímetros até vários metros, dependendo do hardware da leitora e do tipo de tag.|
+|13.56 MHz|Passivo|EAS(anti-furto), livros e gestão documental, controle de acesso, aplicações OEM |Antenas podem ser impressas em substrato, diminuindo os custos da tag. Interferência severa causada por metal.| Pode ser de alguns centímetros até vários metros, dependendo do hardware da leitora e do tipo de tag.|
 |433 MHz (and 2.5 GHz)|Ativo|Sistemas de pagamento de pedágio, gestão de veículos/frota, acompanhamento de bens etc. | Longa distância. Custo da tag muito alto. Utiliza bateria, portanto tags têm uma vida útil definida (geralmente 5 anos). | Normalmente ao redor de 10 metros, mas pode alcançar até uma centena de metros.|
-|915 MHz|Passivo|Acompanhamento de supply chain e aplicações OEM|Tags muito baratas. Longa distância. Recurso anti-colisão permite a leitura de diversas tags simultâneas. Interferência grave de líquidos e do corpo humano| Em torno de 3m de uma antena única ou de 6m entre duas antenas. Distâncias mais longas podem ser feitas com hardware especial. |
+|915 MHz|Passivo|Acompanhamento de supply chain e aplicações OEM|Tags muito baratas. Longa distância. Recurso anti-colisão permite a leitura de diversas tags simultâneas. Interferência grave de líquidos e do corpo humano| Em torno de 3m de uma antena única ou de 6m entre duas antenas. Distâncias mais longas podem ser feitas com hardware especial.
 
 
 ## Porta RFID 
@@ -226,8 +226,10 @@ docker exec -it my_container python omnidb-server.py --createsuperuser=<nome usu
 
 - Arduino IDE 
 - Biblioteca RFID 
+    - [MFRC522 library: https://github.com/miguelbalboa/rfid](https://github.com/miguelbalboa/rfid)
 - Biblioteca WiFi 
-
+    - [ESP8266WiFi library: https://github.com/esp8266/Arduino](https://github.com/esp8266/Arduino)    
+    - [ESP8266WiFi Readthedocs: https://arduino-esp8266.readthedocs.io/en/latest/esp8266wifi/readme.html](https://arduino-esp8266.readthedocs.io/en/latest/esp8266wifi/readme.html)
 ###  Instalação
 ###  Utilização 
 ###  Implantação produção 
@@ -255,8 +257,20 @@ MIT Licence?
 
 ##    Agradecimentos
 
+Gostaria de agradecer e de dar crédito às bibliotecas abaixo, as quais foram utilizadas e deram inspiração para a criação dos sketches do firmware: 
+
+- Biblioteca RFID MFRC522 e seu autor, `Miguel Balboa`: 
+    - [MFRC522 library: https://github.com/miguelbalboa/rfid](https://github.com/miguelbalboa/rfid)
+- Biblioteca WiFi e ao `ESP8266 Community Forum` 
+    - [ESP8266WiFi library: https://github.com/esp8266/Arduino](https://github.com/esp8266/Arduino)    
+
+
 
 ##    Referências 
 
-IGOE, Tom. NFC. 
-Graafstra, Amal. RFID Toys. 
+*Graafstra, Amal.* **RFID Toys.** Wiley Publishing: Indianapolis, 2006.  
+*IGOE, Tom.* **Beginning NFC: Near Field Communication with Adruino, Android & PhoneGAP.** O'Reilly: Sebastopol, 2014.  
+*Norris, Donald.* **Projets créatifs avec Raspberry Pi.** Pearson France: Montreuil, 2014. 
+
+[Paradox](https://www.paradox.ca) - empresa quebecoise, especializada na fabricação de sistemas de segurança, possível interessada na gestão de acessos.  
+[Alarme Provinciale](https://www.alarmeprovinciale.com) - empresa quebecoise, varejista na venda, instalaçãoo e manutenção de sistemas de segurança física.
