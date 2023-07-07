@@ -149,7 +149,7 @@ As iterações seguintes serão plaejadas conforme evoluir a especificação dos
 No entanto, algumas evoluções já estão previstas para as proximas etapas. 
 
 - **Circuito:** criação de placa de circuito impresso, em substituição à breadboard e jumpers do protótipo; integração do módulo relê à placa de circuito
-integrado, eliminando a necessidade do módulo;
+integrado, eliminando a necessidade do módulo; impressão de cobertura para a instalação da antena; construção de uma porta para testes.
 - **Software:** criação de app de cadastro e manutenção dos acessos; frontend Angular; 
 - **Banco de dados:** criação de um modelo de dados para implementação de sistema de acesso RBAC ou semelhante; registro de log de acessos;    
 - **Firmware:** evolução do firmware para adaptação às novas funcionalidades. 
@@ -298,10 +298,14 @@ MIT Licence?
 Gostaria de agradecer e de dar crédito às bibliotecas abaixo, as quais foram utilizadas e deram inspiração para a criação dos sketches do firmware: 
 
 - Biblioteca RFID MFRC522 e seu autor, `Miguel Balboa`: 
-    - [MFRC522 library: https://github.com/miguelbalboa/rfid](https://github.com/miguelbalboa/rfid)
+    - [MFRC522 library: https://github.com/miguelbalboa/rfid](https://github.com/miguelbalboa/rfid)  
 - Biblioteca WiFi e ao `ESP8266 Community Forum` 
-    - [ESP8266WiFi library: https://github.com/esp8266/Arduino](https://github.com/esp8266/Arduino)    https://github.com/torjc01/DocumentingWork
+    - [ESP8266WiFi library: https://github.com/esp8266/Arduino](https://github.com/esp8266/Arduino)  
 
+Também digno de menção é o software de exploração de banco de dados OmniDB que auxilia enormemente o trabalho de utilização do banco PostgreSQL com a linguagem SQL, ao invés do scripting nativo Postgres. 
+
+- [OmniDB: https://github.com/OmniDB/OmniDB](https://github.com/OmniDB/OmniDB)
+- [OmniDB Readthedocs: https://omnidb.readthedocs.io/en/latest/index.html](https://omnidb.readthedocs.io/en/latest/index.html)
 
 
 ##    Referências 
