@@ -93,6 +93,8 @@ Aplicações: rastreio de veículos, manufatura automobilistica, construção, m
 
 ## Porta RFID 
 
+(Texto da proposta inicial no site do Garoa HC)
+
 - Proposta: criar um sistema que permita a abertura de uma porta (ou qualquer outra coisa) através de uma tag rfid, como visto no London Hackspace
 - Ideia basica: um leitor RFID (touchatag) é ligado via USB a um computador. O computador lê o serial number da tag e consulta um banco de dados de membros com seu serial associado. Se o serial for válido, o computador, através de um arduino (ou qualquer outra coisa), aciona um relê, que por sua vez aciona uma trava eletrônica (tipo portão eletrônico), abrindo a porta
 - Caveat: em Londres eles usavam o Oyster (tipo bilhete único) como tag. Podemos ver se o bilhete único pode servir ao mesmo propósito (nao, nao serve, eu ja testei. O bilhete unico usa 13MHz e tecnologia MiFare, diferentaço e com direito a encriptacao. Obviamente moooito mais caro. (tabajaralabs))
@@ -192,6 +194,10 @@ O software de cadastro não será criado para o MVP. O cadastro será feito via 
 - Breadboard
 
 **Dados tratados pelo software no MVP**
+
+Inicialmente, o depósito de dados para realizar a prova do conceito será uma tabela monolítica, não-normalizada ,que respoderá simplesmente ao codigo identificador da tag, relacionando-a a um nome de usuário e a uma porta. Se o registro existir, pressupõe-se o acesso autorizado.  
+
+Após os primeiros testes conclusivos, a base de dados será modelada conforme os requisitos que forem apontados para a necessidade de controle de acesso específica que exista. Um começo de solução seria, por exemplo: 
 
 - **Pessoa:** codigo, nome, sobrenome, numeroID 
 - **Porta:** codigo, designacaoPorta
@@ -332,6 +338,48 @@ docker exec -it my_container python omnidb-server.py --createsuperuser=<nome usu
 ##    Gestão de versões 
 ##    Outros recursos e docs importantes 
 ##    Troubleshooting
+
+**Eu não consigo obter dados de entrada da leitora, ou obtenho a mensagem 'WARNING: Communication failure, is the MFRC522 properly connected?"**
+
+- Verifique a conexão física. 
+- Verifique a correspondência entre os pins/variáveis no código, veja o pin layout. 
+- Verifique a solda dos pins do header. Talvez você tenha pontos de solda fria?
+- Verifique a voltagem. O módulo RFID funciona com 3.3V. 
+- SPI somente funciona com 3.3V, a maior parte dos módulos parece ser tolerante a 5V, mas tente usar um level shifter. 
+- SPI não gosta de longos jumpers. Tente cabos menores.
+- SPI não gosta de breadboards. Tente conexões soldadas. 
+
+**As vezes eu obtenho timeout, ou as vezes a tag/cartão não funcionam.**
+
+- Tente o outro lado da antena. 
+- Tente diminuir a distância entre o MFRC522 e a sua tag. 
+- Aumente o ganho da antena no firmware:  
+    `mfrc522.PCD_SetAntennaGain(mfrc522.RxGain_max);`
+- Use uma fonte de energia mais potente. 
+- Às vezes a qualidade do hardware é realmente ruim. Contacte o seu fornecedor, troque por outro modelo. 
+
+**Meu celular não reconhece o MFRC522 ou o meu MFRC522 não consegue ler dados de outro MFRC522**
+
+- A simulação de cartão não é suportada. 
+- A comunicação com aparelhos celulares não é suportada. 
+- A comunicação peer-to-peer não é suportada.  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ##    Problemas conhecidos
 ##    Onde encontrar ajuda 
 ##    Contribuir 
@@ -346,7 +394,8 @@ docker exec -it my_container python omnidb-server.py --createsuperuser=<nome usu
 
 ##    Licença
 
-MIT Licence? 
+Este projeto é licenciado sob a Licença MIT. Veja o arquivo LICENSE para mais detalhes.
+
 
 ##    Agradecimentos
 
