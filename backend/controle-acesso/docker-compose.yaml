@@ -1,0 +1,55 @@
+version: "3"
+
+services: 
+  acs-database: 
+    container_name: acs-db
+    image: postgres
+    restart: always 
+    ports: 
+      - "5432:5432"
+    networks:
+      - acs-network
+    volumes:
+      - .data/postgres-data:/data/postgres
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+
+
+  omniDb: 
+    container_name: acs-omnidb
+    image: omnidbteam/omnidb:latest
+    restart: always
+    ports:
+      - "8000:8000"
+    networks:
+      - acs-network
+    volumes:
+      - .data/omnidb:/etc/omnidb
+
+  api:
+    container_name: acs-api
+    image: acs-dev:0.0.1
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      - POSTGRES_HOST=${POSTGRES_HOST}
+      - POSTGRES_PORT=${POSTGRES_PORT}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - MODE=DEV
+    ports:
+      - 43000:3000
+    networks: 
+      - acs-network
+    restart: unless-stopped
+    depends_on: 
+      - acs-database
+
+
+networks:
+  acs-network:
+    driver: bridge
+
+    
