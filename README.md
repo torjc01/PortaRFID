@@ -1,8 +1,12 @@
+<!-- Header --> 
+
 # PORTA RFID - Controle de Acesso por rádio identificação 
 
 <div align="center">
     <img src="./images/Logo.png">
 </div>
+<!-- Fim do Header -->
+
 
 Colaboração para desenvolvimento do projeto Porta RFID. Conteúdo inicial copiado da página [Porta RFID, do Garoa Hacker Clube](https://garoa.net.br/wiki/Porta_RFID). 
 
@@ -12,30 +16,84 @@ O novo conteúdo deste README.md será editado na branch [features/inicial](http
 
 
 
-## Visão geral 
-
+## Tecnologia RFID - Visão geral 
 
 ## O que é RFID?
-Um sistema RFID (`Radio Frequency Identification`) é a soma de dois componentes principais: uma tag que é apresentada ao sistema, e uma leitora que faz a identificação da tag e encaminha os dados para tratamento adequado em um computador ou microcontrolador. 
+Um sistema RFID (`Radio Frequency Identification`) é a soma de alguns componentes principais: tags, antenas, leitoras e sistemas de informação.  que é apresentada ao sistema, e uma leitora que faz a identificação da tag e encaminha os dados para tratamento adequado em um computador ou microcontrolador. 
 
-A leitora é constituida por um módulo de rádio emissor de sinal de alta frequência e de uma antena. Por possuir alimentação elétrica própria é conhecida como dispositivo ativo da comunicação. 
+A leitora é constituida por um módulo de rádio emissor de sinal de determinada frequência e de uma antena. Por possuir alimentação elétrica própria é conhecida como dispositivo ativo da comunicação. Ela recebe a onda de rádio e a converte em dados digitais que serão tratados e armazenados por um sistema de informação. Existem dois tipos de leitoras: fixas, que são instaladas em um ambiente, e móveis, que podem ser levadas para ... 
 
-A tag, por sua vez, é chamada de dispositivo passivo da comunicação, pois normalmente não dispõe de nenhuma fonte de energia própria. Ela é composta por um microchip que registra e processa informação, além de uma antena. Ela depende do campo magnético criado pela aproximação com a leitora para energizar o seu circuito e assim estabelecer a conexão e a troca de mensagens. Existem tags ativas, mas elas são utilizadas para casos de uso especiais em que a tag deve ser localizada a uma longa distância. 
+A tag, por sua vez, é chamada de dispositivo passivo da comunicação, pois normalmente não dispõe de nenhuma fonte de energia própria. Ela é composta por um microchip que registra e processa informação, além de uma antena. Ela depende do campo magnético criado pela aproximação com a leitora para energizar o seu circuito e assim estabelecer a conexão e a troca de dados, de sua ID e de dados programáveis caso estejam disponíveis. Existem tags ativas, mas elas são utilizadas para casos de uso especiais em que a tag deve ser localizada a uma longa distância. 
 
-Em seguida há o processo conhecido como `backscatter`, quando o circuito da leitora detecta e decifra a informação emitida pela tag. A troca de informação se completa aí.
+As antenas permitem o estabelecimento da comunicação entre tags e leitoras. Elas podem ser integradas ao circuito da leitora, ou podem ser externas, para facilitar a instalação física. Sem uma antena, a leitora não seria capaz de receber as ondas de rádio, nem transmitir informação. 
+
+O sistema de informação, por sua vez, é necessário para fazer o tratamento dos dados e armazená-los em banco de dados. O sistema de informação deve ser capaz de programar tags, gerenciar dispositivos e dados, fazer monitoramento remoto de tags e a configuração do hardware. 
+
+
+## RFID Tags: Categorias frenquencias e aplicações 
+
+No mercado existem múltiplas opções de tags, que variam conforme as frequências dos diferentes campos eletromagnéticos que elas foram projetadas para operar. Existem 3 categorias principais de tags: baixa frequência (low frequency - LF), alta frequência (high frequency - HF) e ultra-alta frequência (ultra-high frequency - UHF). 
+
+1. **Low frequency tags (LF)** 
+
+- campo geral de frequência: de 30 KHz até 300 KHz
+- campo primário de frequência: de 125 KHz até 134 KHz
+- campo de leiura: quase contato até 10cm  
+- tem a menor capacidade de transferência de dados de todas as tags RFID
+- armazena uma pequena quantidade de dados 
+- custo médio da tag: de $0,75 a $5,00  
+
+Aplicações: rastreio animal, controle de acesso, keyfob de carros, rastreio de bens. 
+
+2. **High frequency tags (HF)**
+
+- campo primário de frequência: 13,56 MHz
+- campo de leitura: quase contato até 30cm 
+- podem ser lidas múltiplas tags simultaneamente
+- armazenam até 4Kb de dados 
+- podem ser facilmente lidas próximo a água, tecidos, metais, madeira, corpo humano.    
+- custo médio da tag: $0,20 a $10,00 
+
+Aplicações: Livros de biblioteca, cartões de identificação pessoal, bagagem despachada, cartões de crédito, chips de poker, aplicações NFC. 
+
+3. **Ultra-high frequency tags (UHF)**
+
+Existem dois diferentes padrões de tags UFH: ativas e passivas 
+
+3.1. **UHF passive tags**
+
+- campo primário de frequência: de 860 MHz a 960 MHz
+- campo de leitura: quase contato até 25m 
+- alta capacidade de transferência de dados 
+- grande variedade de encapsulamento e tamanhos 
+- custo médio da tag: $0,09 a $20,00
+
+Aplicações: rastreio de supply chain, manufatura, indústria farmaceutica, pedágio eletrônico, rastreio de estoque, contagem de tempo em corridas, rastreio de bens. 
+
+3.2 **UHF active tags** 
+
+- campo primário de frequência: de 433 MHz
+- campo de leitura: quase contato até mais de 100m 
+- grande capacidade de memória 
+- alta capacidade de transferência de dados 
+- custo médio da tag: $25,00 a $50,00
+
+Aplicações: rastreio de veículos, manufatura automobilistica, construção, mineiração, rastreio de bens. 
 
 
 **RFID: Frequências, usos e distâncias típicas**
 
 |Frequência|Tipo|Uso|Pros and contras|Distância|
 |---------------|------|----------|---------------|--------|
-|125-148 KHz|Passivo|Rastreio animal (ISO11784/11785), control de acesso, e aplicações OEM| Sinal negocia bem em liquidos e metais. Maoir custo da tag por causa do longo tamanho da antena de cobre. |1,5cm a 10cm é típico. 15cm a 30cm ou mais é possível com equipamento especializado.|
+|125-148 KHz|Passivo|Rastreio animal (ISO11784/11785), controle de acesso, e aplicações OEM| Sinal negocia bem em liquidos e metais. Maoir custo da tag por causa do longo tamanho da antena de cobre. |1,5cm a 10cm é típico. 15cm a 30cm ou mais é possível com equipamento especializado.|
 |13.56 MHz|Passivo|EAS(anti-furto), livros e gestão documental, controle de acesso, aplicações OEM |Antenas podem ser impressas em substrato, diminuindo os custos da tag. Interferência severa causada por metal.| Pode ser de alguns centímetros até vários metros, dependendo do hardware da leitora e do tipo de tag.|
 |433 MHz (and 2.5 GHz)|Ativo|Sistemas de pagamento de pedágio, gestão de veículos/frota, acompanhamento de bens etc. | Longa distância. Custo da tag muito alto. Utiliza bateria, portanto tags têm uma vida útil definida (geralmente 5 anos). | Normalmente ao redor de 10 metros, mas pode alcançar até uma centena de metros.|
 |915 MHz|Passivo|Acompanhamento de supply chain e aplicações OEM|Tags muito baratas. Longa distância. Recurso anti-colisão permite a leitura de diversas tags simultâneas. Interferência grave de líquidos e do corpo humano| Em torno de 3m de uma antena única ou de 6m entre duas antenas. Distâncias mais longas podem ser feitas com hardware especial.
 
 
 ## Porta RFID 
+
+(Texto da proposta inicial no site do Garoa HC)
 
 - Proposta: criar um sistema que permita a abertura de uma porta (ou qualquer outra coisa) através de uma tag rfid, como visto no London Hackspace
 - Ideia basica: um leitor RFID (touchatag) é ligado via USB a um computador. O computador lê o serial number da tag e consulta um banco de dados de membros com seu serial associado. Se o serial for válido, o computador, através de um arduino (ou qualquer outra coisa), aciona um relê, que por sua vez aciona uma trava eletrônica (tipo portão eletrônico), abrindo a porta
@@ -129,11 +187,17 @@ O software de cadastro não será criado para o MVP. O cadastro será feito via 
 - NodeMCU
 - Módulo RFID
 - Módulo relê
-- Buzzer ou alto falantes de 8 ohms
+- Buzzer ou alto falantes de 8Ω
+- Adaptador de tensão de 9V, 2A
+- Conector Jack 2,5mm 
 - Componentes discretos: leds, resistores, capacitores, fios jumper
 - Breadboard
 
 **Dados tratados pelo software no MVP**
+
+Inicialmente, o depósito de dados para realizar a prova do conceito será uma tabela monolítica, não-normalizada ,que respoderá simplesmente ao codigo identificador da tag, relacionando-a a um nome de usuário e a uma porta. Se o registro existir, pressupõe-se o acesso autorizado.  
+
+Após os primeiros testes conclusivos, a base de dados será modelada conforme os requisitos que forem apontados para a necessidade de controle de acesso específica que exista. Um começo de solução seria, por exemplo: 
 
 - **Pessoa:** codigo, nome, sobrenome, numeroID 
 - **Porta:** codigo, designacaoPorta
@@ -146,7 +210,8 @@ As iterações seguintes serão plaejadas conforme evoluir a especificação dos
 
 No entanto, algumas evoluções já estão previstas para as proximas etapas. 
 
-- **Circuito:** criação de placa de circuito impresso, em substituição à breadboard e jumpers do protótipo; 
+- **Circuito:** criação de placa de circuito impresso, em substituição à breadboard e jumpers do protótipo; integração do módulo relê à placa de circuito
+integrado, eliminando a necessidade do módulo; impressão de cobertura para a instalação da antena; construção de uma porta para testes.
 - **Software:** criação de app de cadastro e manutenção dos acessos; frontend Angular; 
 - **Banco de dados:** criação de um modelo de dados para implementação de sistema de acesso RBAC ou semelhante; registro de log de acessos;    
 - **Firmware:** evolução do firmware para adaptação às novas funcionalidades. 
@@ -162,32 +227,29 @@ No entanto, algumas evoluções já estão previstas para as proximas etapas.
 
 ##    Lista de Materiais 
 
-[Arduino Uno](https://ca.robotshop.com/products/arduino-uno-r3-usb-microcontroller?pr_prod_strat=collection_fallback&pr_rec_id=9e1056120&pr_rec_pid=7729821548695&pr_ref_pid=7728911941783&pr_seq=uniform) CAD 35.99
+- [Arduino Uno](https://ca.robotshop.com/products/arduino-uno-r3-usb-microcontroller?pr_prod_strat=collection_fallback&pr_rec_id=9e1056120&pr_rec_pid=7729821548695&pr_ref_pid=7728911941783&pr_seq=uniform) CAD 35.99
 
-[Node MCU](https://www.electromike.com/plaquette-nodemcu-v3-lua-iot-esp8266-wifi-arduino-nodemcu-lua.html) CAD 9.99
+- [Node MCU](https://www.electromike.com/plaquette-nodemcu-v3-lua-iot-esp8266-wifi-arduino-nodemcu-lua.html) CAD 9.99
 
-[Módulo RFID RC522](https://ca.robotshop.com/products/mifare-rc522-module-rfid-reader) CAD 13.75
+- [Módulo RFID RC522](https://ca.robotshop.com/products/mifare-rc522-module-rfid-reader) CAD 13.75
 
     **Especificações técnicas** 
-
         Frequência: 125 MHz  
         Interface com host: SPI  
         Voltagem operacional: 2.5 - 3.3V    
         Distância de leitura: até 3cm  
 
-[Módulo Relê HL-525 v1.0](https://www.canadarobotix.com/products/1347) CAD 5.09
+- [Módulo Relê HL-525 v1.0](https://www.canadarobotix.com/products/1347) CAD 5.09
 
-Conector Jack 2.5mm 
+- Fechadura elétrica Solenóide 12 V 
 
-Adaptador de corrente 9V 2A 
+- Conector Jack 2.5mm 
 
-Buzzer ou Speaker 8 Ohms 
+- Adaptador de corrente 9V 2A 
 
-Fechadura elétrica Solenóide 12 V 
+- Buzzer ou Speaker 8Ω
 
-Led 5mm vermelho 
-
-Led 5mm verde 
+- Led 5mm vermelho, Led 5mm verde, resistores, capacitores.  
 
 ##    Custos 
 
@@ -276,6 +338,48 @@ docker exec -it my_container python omnidb-server.py --createsuperuser=<nome usu
 ##    Gestão de versões 
 ##    Outros recursos e docs importantes 
 ##    Troubleshooting
+
+**Eu não consigo obter dados de entrada da leitora, ou obtenho a mensagem 'WARNING: Communication failure, is the MFRC522 properly connected?"**
+
+- Verifique a conexão física. 
+- Verifique a correspondência entre os pins/variáveis no código, veja o pin layout. 
+- Verifique a solda dos pins do header. Talvez você tenha pontos de solda fria?
+- Verifique a voltagem. O módulo RFID funciona com 3.3V. 
+- SPI somente funciona com 3.3V, a maior parte dos módulos parece ser tolerante a 5V, mas tente usar um level shifter. 
+- SPI não gosta de longos jumpers. Tente cabos menores.
+- SPI não gosta de breadboards. Tente conexões soldadas. 
+
+**As vezes eu obtenho timeout, ou as vezes a tag/cartão não funcionam.**
+
+- Tente o outro lado da antena. 
+- Tente diminuir a distância entre o MFRC522 e a sua tag. 
+- Aumente o ganho da antena no firmware:  
+    `mfrc522.PCD_SetAntennaGain(mfrc522.RxGain_max);`
+- Use uma fonte de energia mais potente. 
+- Às vezes a qualidade do hardware é realmente ruim. Contacte o seu fornecedor, troque por outro modelo. 
+
+**Meu celular não reconhece o MFRC522 ou o meu MFRC522 não consegue ler dados de outro MFRC522**
+
+- A simulação de cartão não é suportada. 
+- A comunicação com aparelhos celulares não é suportada. 
+- A comunicação peer-to-peer não é suportada.  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ##    Problemas conhecidos
 ##    Onde encontrar ajuda 
 ##    Contribuir 
@@ -290,17 +394,22 @@ docker exec -it my_container python omnidb-server.py --createsuperuser=<nome usu
 
 ##    Licença
 
-MIT Licence? 
+Este projeto é licenciado sob a Licença MIT. Veja o arquivo LICENSE para mais detalhes.
+
 
 ##    Agradecimentos
 
 Gostaria de agradecer e de dar crédito às bibliotecas abaixo, as quais foram utilizadas e deram inspiração para a criação dos sketches do firmware: 
 
 - Biblioteca RFID MFRC522 e seu autor, `Miguel Balboa`: 
-    - [MFRC522 library: https://github.com/miguelbalboa/rfid](https://github.com/miguelbalboa/rfid)
+    - [MFRC522 library: https://github.com/miguelbalboa/rfid](https://github.com/miguelbalboa/rfid)  
 - Biblioteca WiFi e ao `ESP8266 Community Forum` 
-    - [ESP8266WiFi library: https://github.com/esp8266/Arduino](https://github.com/esp8266/Arduino)    
+    - [ESP8266WiFi library: https://github.com/esp8266/Arduino](https://github.com/esp8266/Arduino)  
 
+Também digno de menção é o software de exploração de banco de dados OmniDB que auxilia enormemente o trabalho de utilização do banco PostgreSQL com a linguagem SQL, ao invés do scripting nativo Postgres. 
+
+- [OmniDB: https://github.com/OmniDB/OmniDB](https://github.com/OmniDB/OmniDB)
+- [OmniDB Readthedocs: https://omnidb.readthedocs.io/en/latest/index.html](https://omnidb.readthedocs.io/en/latest/index.html)
 
 
 ##    Referências 
@@ -311,4 +420,7 @@ Gostaria de agradecer e de dar crédito às bibliotecas abaixo, as quais foram u
 
 ### Sites web
 [Paradox](https://www.paradox.ca) - empresa quebecoise, especializada na fabricação de sistemas de segurança, possível interessada na gestão de acessos.  
-[Alarme Provinciale](https://www.alarmeprovinciale.com) - empresa quebecoise, varejista na venda, instalaçãoo e manutenção de sistemas de segurança física.
+[Alarme Provinciale](https://www.alarmeprovinciale.com) - empresa quebecoise, varejista na venda, instalaçãoo e manutenção de sistemas de segurança física.  
+[Documenting work: https://github.com/torjc01/DocumentingWork](https://github.com/torjc01/DocumentingWork) - minha reescritura de um artigo antigo da revista `Make` que fornece orientações particularmente interessantes e úteis para a documentação de todo tipo de projeto.  
+[TT Electronics](https://blog.ttelectronics.com/rfid-technology) - blog sobre RFID  
+[Atlas RFID Store](https://atlasrfidstore.com) - companhia especializada em equipamentos para RFID  
