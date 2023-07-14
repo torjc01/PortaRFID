@@ -15,12 +15,13 @@ O novo conteúdo deste README.md será editado na branch [features/inicial](http
 
 # Tabela de conteúdo
 
-
-
 ## Tecnologia RFID - Visão geral 
 
 ## O que é RFID?
-Um sistema RFID (`Radio Frequency Identification`) é a soma de alguns componentes principais: tags, antenas, leitoras e sistemas de informação.  que é apresentada ao sistema, e uma leitora que faz a identificação da tag e encaminha os dados para tratamento adequado em um computador ou microcontrolador. 
+
+A tecnologia de Identificação por Radiofrequência, conhecida como RFID (`Radio Frequency Identification`), tem se tornado cada vez mais relevante e presente em diversos setores.  Esta tecnologia permite a identificação e o rastreamento de pessoas, objetos e animais por meio de tags eletrônicas, proporcionando benefícios significativos em áreas como logística, cadeia de suprimentos, varejo, saúde, controle de acesso, e muito mais. 
+
+Um sistema RFID é a soma de alguns componentes principais: tags, antenas, leitoras e sistemas de informação.  que é apresentada ao sistema, e uma leitora que faz a identificação da tag e encaminha os dados para tratamento adequado em um computador ou microcontrolador. 
 
 A leitora é constituida por um módulo de rádio emissor de sinal de determinada frequência e de uma antena. Por possuir alimentação elétrica própria é conhecida como dispositivo ativo da comunicação. Ela recebe a onda de rádio e a converte em dados digitais que serão tratados e armazenados por um sistema de informação. Existem dois tipos de leitoras: fixas, que são instaladas em um ambiente, e móveis, que podem ser levadas para ... 
 
@@ -28,14 +29,23 @@ A tag, por sua vez, é chamada de dispositivo passivo da comunicação, pois nor
 
 As antenas permitem o estabelecimento da comunicação entre tags e leitoras. Elas podem ser integradas ao circuito da leitora, ou podem ser externas, para facilitar a instalação física. Sem uma antena, a leitora não seria capaz de receber as ondas de rádio, nem transmitir informação. 
 
-O sistema de informação, por sua vez, é necessário para fazer o tratamento dos dados e armazená-los em banco de dados. O sistema de informação deve ser capaz de programar tags, gerenciar dispositivos e dados, fazer monitoramento remoto de tags e a configuração do hardware. 
+O sistema de informação é necessário para fazer o tratamento dos dados e armazená-los em banco de dados. Ele deve ser capaz de programar tags, gerenciar dispositivos e dados, de fazer monitoramento remoto de tags e a configuração do hardware. 
+
+Neste documento vamos explorar em detalhes os conceitos fundamentais de comunicação RFID, incluindo as diferentes frequências utilizadas, os padrões de comunicação, os tipos de tags disponíveis, o alcance da tecnologia e os principais normativos relacionados. 
 
 
-## RFID Tags: Categorias frenquencias e aplicações 
+## RFID Tags: Categorias, frequências e aplicações 
 
-No mercado existem múltiplas opções de tags, que variam conforme as frequências dos diferentes campos eletromagnéticos que elas foram projetadas para operar. Existem 3 categorias principais de tags: baixa frequência (low frequency - LF), alta frequência (high frequency - HF) e ultra-alta frequência (ultra-high frequency - UHF). 
+A comunicação RFID utiliza diferentes faixas de radiofrequência para estabelecer a comunicação entre os leitores e as tags.
+
+As três principais faixas de frequências empregadas são: baixa frequência (`low frequency - LF`), alta frequência (`high frequency - HF`) e ultra-alta frequência (`ultra-high frequency - UHF`). 
+
+No mercado existem múltiplas opções de tags, que variam conforme as frequências dos diferentes campos eletromagnéticos que elas foram projetadas para operar. A escolha da frequência adequada depende das necessidades específicas da aplicação, levando em consideração fatores como alcance, tamanho das tags, interferências possíveis e custos associados. 
+
 
 1. **Low frequency tags (LF)** 
+
+Opera na faixa de 125KHz a 134KHz e é amplamente utilizado em aplicações de curto alcance. Essa frequência é menos suscetível a interferências e possui uma capacidade razoável de penetração em materiais, tornando-a ideal para aplicações como controle de acesso, identificação animal e sistemas de pagamento sem contato. 
 
 - campo geral de frequência: de 30 KHz até 300 KHz
 - campo primário de frequência: de 125 KHz até 134 KHz
@@ -48,6 +58,8 @@ Aplicações: rastreio animal, controle de acesso, keyfob de carros, rastreio de
 
 2. **High frequency tags (HF)**
 
+Opera na faixa de 13,56KHz e é comumente empregada em aplicações que exigem um alcance de leitura moderado. Essa frequência é amplamente adotada em cartões de identificação, etiquetas inteligentes para varejo e sistemas de pagamento por proximidade.  
+
 - campo primário de frequência: 13,56 MHz
 - campo de leitura: quase contato até 30cm 
 - podem ser lidas múltiplas tags simultaneamente
@@ -58,6 +70,8 @@ Aplicações: rastreio animal, controle de acesso, keyfob de carros, rastreio de
 Aplicações: Livros de biblioteca, cartões de identificação pessoal, bagagem despachada, cartões de crédito, chips de poker, aplicações NFC. 
 
 3. **Ultra-high frequency tags (UHF)**
+
+Opera nas faixas de 860MHz a 960MHz e é conhecida por seu alcance de leitura estendido. Essa faixa de frequência é comumente utilizada em aplicações de cadeia de suprimentos, rastreamento de ativos, logística e inventário, devido à sua capacidade de leitura rápida de várias tags em longas distâncias. 
 
 Existem dois diferentes padrões de tags UFH: ativas e passivas 
 
@@ -91,6 +105,13 @@ Aplicações: rastreio de veículos, manufatura automobilistica, construção, m
 |433 MHz (and 2.5 GHz)|Ativo|Sistemas de pagamento de pedágio, gestão de veículos/frota, acompanhamento de bens etc. | Longa distância. Custo da tag muito alto. Utiliza bateria, portanto tags têm uma vida útil definida (geralmente 5 anos). | Normalmente ao redor de 10 metros, mas pode alcançar até uma centena de metros.|
 |915 MHz|Passivo|Acompanhamento de supply chain e aplicações OEM|Tags muito baratas. Longa distância. Recurso anti-colisão permite a leitura de diversas tags simultâneas. Interferência grave de líquidos e do corpo humano| Em torno de 3m de uma antena única ou de 6m entre duas antenas. Distâncias mais longas podem ser feitas com hardware especial.
 
+## Padrões de comunicação 
+
+Os padrões de comunicação RFID estabelecem regras e os protocolos para troca de dados entre leitores e tags. Dois dos principais padrões são o `EPC - Electronic Product Code` e o `ISO International Standards Organization`. 
+
+- EPC: o pardão EPC é amplamente utilizado em aplicações de logística e de varejo. Ele define uma estrutura de dados e permite a identificação única de itens e o compartilhamento eficiente de informações ao longo da cadeia de suprimentos. O EPC utiliza o protocolo de comunicação EPCGlobal, que permite uma interação consistente entre os dispositivos RFID. 
+
+- ISO: o padrão ISO é adotado em diversos setores, como transporte, saúde e indústria. Os padrões ISO mais comuns para RFID incluem a séria ISO 14443, utilizada em cartões de identificação e sistemas de pagamento por proximidade; e a série 18000, que abrange especificações para dierentes frequências e aplicações de RFID.  
 
 ## Porta RFID 
 
