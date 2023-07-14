@@ -34,7 +34,24 @@ O sistema de informação é necessário para fazer o tratamento dos dados e arm
 Neste documento vamos explorar em detalhes os conceitos fundamentais de comunicação RFID, incluindo as diferentes frequências utilizadas, os padrões de comunicação, os tipos de tags disponíveis, o alcance da tecnologia e os principais normativos relacionados. 
 
 
-## RFID Tags: Categorias, frequências e aplicações 
+## RFID: tags, frequências, categorias, padrões de comunicação e aplicações 
+
+### Tags 
+
+<div align="center">
+    <img src="./images/RFID-tag.png" />
+</div>
+
+As tags RFID estão disponíveis em diferentes formatos e funcionalidades, cada uma adequada para diferentes aplicações. As tags podem ser classificadas em três categorias principais: passivas, semi-passivas e ativas. 
+
+`Tags passivas` não possuem uma fonte interna de energia e dependem da energia fornecida pelo leitor para alimentar suas operações. Elas são pequenas, de baixo custo e são amplamente utilizadas em aplicações como controle de estoque e identificação de produtos. No entanto, seu alcance de leitura é limitado em comparação com outros tipos de tags. 
+
+`Tags semi-passivas`, também conhecidas como tags com bateria assistida, possuem uma bateria interna que fornece energia para alguns componentes internos, como sensores. Essas tagssão comumente emopregadas em aplicações que requerem funcionalidades adicionais, como monitoramento de temperatura ou detecção de movimento. 
+
+`Tags ativas` são alimentadas por uma fonte de energia interna, como uma bateria. Elas possuem um alcance de leitura estendido e podem suportar uma ampla variedade de recursos, como transmissão contínua de dados, sensores avançados e comunicação bidirecional. Essas tags são usadas em aplicações que demandam longo tempo de leitura e monitoramento constante, como rastreamento de ativos e logística. 
+
+
+### Frequências
 
 A comunicação RFID utiliza diferentes faixas de radiofrequência para estabelecer a comunicação entre os leitores e as tags.
 
@@ -73,7 +90,7 @@ Aplicações: Livros de biblioteca, cartões de identificação pessoal, bagagem
 
 Opera nas faixas de 860MHz a 960MHz e é conhecida por seu alcance de leitura estendido. Essa faixa de frequência é comumente utilizada em aplicações de cadeia de suprimentos, rastreamento de ativos, logística e inventário, devido à sua capacidade de leitura rápida de várias tags em longas distâncias. 
 
-Existem dois diferentes padrões de tags UFH: ativas e passivas 
+Existem dois padrões diferentes de tags UFH: ativas e passivas 
 
 3.1. **UHF passive tags**
 
@@ -96,7 +113,29 @@ Aplicações: rastreio de supply chain, manufatura, indústria farmaceutica, ped
 Aplicações: rastreio de veículos, manufatura automobilistica, construção, mineiração, rastreio de bens. 
 
 
-**RFID: Frequências, usos e distâncias típicas**
+### Padrões de comunicação 
+
+Os padrões de comunicação RFID estabelecem regras e os protocolos para troca de dados entre leitores e tags. Dois dos principais padrões são o `EPC - Electronic Product Code` e o `ISO International Standards Organization`. 
+
+- EPC: o pardão EPC é amplamente utilizado em aplicações de logística e de varejo. Ele define uma estrutura de dados e permite a identificação única de itens e o compartilhamento eficiente de informações ao longo da cadeia de suprimentos. O EPC utiliza o protocolo de comunicação EPCGlobal, que permite uma interação consistente entre os dispositivos RFID. 
+
+- ISO: o padrão ISO é adotado em diversos setores, como transporte, saúde e indústria. Os padrões ISO mais comuns para RFID incluem a séria `ISO 14443`, utilizada em cartões de identificação e sistemas de pagamento por proximidade; e a série `ISO 18000`, que abrange especificações para dierentes frequências e aplicações de RFID.  
+
+
+### Normativos 
+
+Diversas organizações e normativos regulam o uso do RFID em diferentes regiões do mundo. Esses normativos estabelecem limites de potência, frequências permitidas e outras regulamentações para garantir a operação adequada da tecnologia RFID e evitar interferências prejudiciais a outros sistemas de comunicação. Alguns dos principais órgãos reguladores incluem: 
+
+- `Federal Communicatios Commission (FCC)`: responsável pela regulamentação das comunicações nos Estados Unidos, incluindo a utilização de frequências RFID. 
+
+- `European Telecommunications Standards Institute (ETSI)`: responsável pela definição dos padrões de comunicação para a Europa, incluindo os regulamentos para RFID. 
+
+- `Agência Nacional de Telecomunicações (ANATEL)`: é o órgão regulador das telecomunicações no Brasil e estabelece as diretrizes para o uso da RFID no país. 
+
+- Outros órgãos reguladores, como o `International Telecommunication Union (ITU)` e o `Japan RFID Promotion Council (JRC)`, também desempenham papéis importantes no estabelecimento de normativos e padrões para a tecnologia RFID.  
+
+
+**RFID: resumo**
 
 |Frequência|Tipo|Uso|Pros and contras|Distância|
 |---------------|------|----------|---------------|--------|
@@ -105,15 +144,11 @@ Aplicações: rastreio de veículos, manufatura automobilistica, construção, m
 |433 MHz (and 2.5 GHz)|Ativo|Sistemas de pagamento de pedágio, gestão de veículos/frota, acompanhamento de bens etc. | Longa distância. Custo da tag muito alto. Utiliza bateria, portanto tags têm uma vida útil definida (geralmente 5 anos). | Normalmente ao redor de 10 metros, mas pode alcançar até uma centena de metros.|
 |915 MHz|Passivo|Acompanhamento de supply chain e aplicações OEM|Tags muito baratas. Longa distância. Recurso anti-colisão permite a leitura de diversas tags simultâneas. Interferência grave de líquidos e do corpo humano| Em torno de 3m de uma antena única ou de 6m entre duas antenas. Distâncias mais longas podem ser feitas com hardware especial.
 
-## Padrões de comunicação 
+## Conclusão 
 
-Os padrões de comunicação RFID estabelecem regras e os protocolos para troca de dados entre leitores e tags. Dois dos principais padrões são o `EPC - Electronic Product Code` e o `ISO International Standards Organization`. 
+Neste documento exploramos os conceitos fundamentais da comunicação RFID, abrangendo as diferentes frequências utilizadas, os padrões de comunicação, os tipos de tags disponíveis, o alcance da tecnologia e os principais normativos relacionados. Essa tecnologia oferece uma solução poderosa para a identificação e o rastreamento em diversos setores, proporcionando maior eficiência e precisão em  processos como logística, cadeia de suprimentos, varejo, saúide e muito mais. Compreender esses conceitos é essencial para explorar e implementar soluções de RFID de forma eficaz em uma ampla gama de aplicações técnicas e práticas.   
 
-- EPC: o pardão EPC é amplamente utilizado em aplicações de logística e de varejo. Ele define uma estrutura de dados e permite a identificação única de itens e o compartilhamento eficiente de informações ao longo da cadeia de suprimentos. O EPC utiliza o protocolo de comunicação EPCGlobal, que permite uma interação consistente entre os dispositivos RFID. 
-
-- ISO: o padrão ISO é adotado em diversos setores, como transporte, saúde e indústria. Os padrões ISO mais comuns para RFID incluem a séria ISO 14443, utilizada em cartões de identificação e sistemas de pagamento por proximidade; e a série 18000, que abrange especificações para dierentes frequências e aplicações de RFID.  
-
-## Porta RFID 
+# Projeto Porta RFID 
 
 (Texto da proposta inicial no site do Garoa HC)
 
