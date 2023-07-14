@@ -3,8 +3,10 @@
 
 const char* ssid="NOKIA-5A11"; 
 const char* password="83YF6xFkku"; 
-const char* serverAddress = "https://b898-67-221-61-19.ngrok-free.app";
-const char* endpoint = "/acesso/filtra";
+//const char* serverAddress = "https://2b43-67-221-61-19.ngrok-free.app";
+const char* serverAddress = "port-e-daemon.apps.exp.openshift.cqen.ca"; 
+//const char* endpoint = "/acesso/filtra";
+const char* endpoint = "/connection"; 
 const int serverPort=443;
 
 void setup(){
