@@ -19,13 +19,12 @@ const POSTGRES_PASSWORD   = process.env.POSTGRES_PASSWORD;
 @Module({
   imports: [AcessoModule, 
     TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: "192.168.18.14",
-      //host: 'acs-database',  
+      type: "postgres",
+      host: "acs-backend-db",  
       port: 5432, 
-      username: "postgres", 
+      username: "acs-user", 
       password: POSTGRES_PASSWORD, 
-      database: 'postgres', 
+      database: "acs-backend-db", 
       autoLoadEntities: true, 
       synchronize: true  // Disable when in production environment
       }),],
