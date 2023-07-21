@@ -1,0 +1,297 @@
+#!/bin/bash 
+# =====================================================================================
+# Criação do template do script manage
+# Este template permite a rapida adaptação a diferentes projetos desta ferramenta de 
+# administração de sistemas. Altere as descrições e as opções, inclua as funções 
+# próprias ao seu sistema e dê instruções de utilização aos usuários no README.md da 
+# raiz do seu projeto.
+#
+# Copyright (c) 2023 Julio Cesar Torres <juliozohar@gmail.com> <github.com/torjc01>
+# Data: 2023/07/18 
+# Projeto: https://www.github.com/torjc01/PortaRFID
+# SPDX-License-Identifier: MIT
+# License-Filename: LICENSES/MIT.txt
+# =====================================================================================
+echo "*** ------------------------------------ ***"
+echo "***  Commande de gestion des opérations  ***"
+echo "*** ------------------------------------ ***"
+
+set -e 
+
+SCRIPT_HOME="$( cd "$( dirname "$0" )" && pwd )"
+# echo "[DEBUG] SCRIPT_HOME " $SCRIPT_HOME
+
+# =============================================================================
+#  usage()
+# =============================================================================
+usage () {
+  cat <<-EOF
+
+
+    manage(1)                                                  User Commands                                                  manage(1)
+
+    NOME
+        manage - comando de gestão da operação da aplicação PortaRFID
+    
+
+    SINOPSE 
+        $0 [comando] [opções]
+
+
+    DESCRIÇÃO
+
+
+        deploy 
+                Fait le déploy des templates vers Openshift.
+
+        down
+                Détruit tous les services et supprimme les volumes (storage) et containeurs.
+
+        help
+                Montre cette documentation. 
+
+        init-env
+                Réalise la création des fichiers d'environnement de l'application. 
+
+        logs
+                Montre les logs de docker compose run (ctrl-c pour sortir).
+
+        ngrok-start
+                Démarre un tunnel ngrok. Passez l'adresse IP auquel l'application est rattachée et le port 
+                qui répondra aux requêtes. Ensuite, on enregistre le tunnel dans une variable d'environnement 
+                appellée HOST_TUNNEL au pod Openshift du daemon.   
+
+        start
+                Créé les conteineurs de l'application des images buildés et démarre les services basés sur 
+                le docker-compose.yml file.
+    
+                Vous pouvez passer la liste de conteineurs à démarrer. 
+                Par défault tous les containeurs seront démarrés. 
+        
+        stop
+                Arrête les services.  Ceci est un processus non destructif. Les volumes et containeurs
+                ne sont pas supprimés et ils seront réutilisés la prochaine fois que vous faites run start.
+
+        up  
+                Le même que start.
+
+        [command] [options]
+                Toute commande et option qui peut être executée par le shell du container.
+
+
+    AUTOR
+        Julio Cesaer Torres dos Santos <github.com/torjc01>
+
+EOF
+exit 1
+}
+
+# =============================================================================
+#  Funções: 
+# =============================================================================
+
+# =====================
+#  Funções comuns
+# =====================
+
+function checkNgrokTunnelActive () {
+    if [ -z "${SITE_URL}" ]; then
+        echoError "Parece que o túnel ngrok não está ativado."
+        echoError "Por favor, abra um outro shell no diretório scripts e execute start-ngrok.sh antes de tentar de novo."
+        exit 1
+    fi
+}
+
+function echoRed (){
+    _msg=${1}
+    _red='\e[31m'
+    _nc='\e[0m' # Sem cor
+    echo -e "${_red}${_msg}${_nc}"
+}
+
+function echoYellow (){
+    _msg=${1}
+    _yellow='\e[33m'
+    _nc='\e[0m' # Sem cor
+    echo -e "${_yellow}${_msg}${_nc}"
+}
+
+function isInstalled () {
+    rtnVal=$(type "$1" >/dev/null 2>&1)
+    rtnCd=$?
+    if [ ${rtnCd} -ne 0 ]; then
+        return 1
+    else
+        return 0
+    fi
+}
+
+function isNgrokInstalled () {
+    NGROK_EXE=ngrok
+    if ! isInstalled ${NGROK_EXE}; then
+        echoError "O executável ${NGROK_EXE} é necessário mas ele não se encontra no path."
+        echoError "Ele pode ser baixado a partir do endereço: https://ngrok.com/download"
+        echoError "Alternativamente, um package manager como Brew (Mac) pode ser utilizado para instalar esta dependência."
+        exit 1
+    fi
+}
+
+function isOcInstalled () {
+    OC_EXE=oc
+    if ! isInstalled ${OC_EXE}; then
+        echoRed "O executável ${OC_EXE} é necessário mas ele não se encontra no path."
+        echoRed "Ele pode ser baixado a partir do endereço: "
+        echoRed "Alternativamente, um package manager como Brew (Mac) pode ser utilizado para instalar esta dependência."
+        exit 1
+    fi
+}
+
+# =====================
+#  Funções utilitárias
+# =====================
+
+#
+#
+#
+function deploy(){
+
+    echo "Fazendo deploy da aplicação no openshift"
+    isOcInstalled
+
+    cd ../openshift/templates
+    
+    echo "Deploy da base de dados e API da aplicação"
+    sh 010-DeploymentConfigBackend.sh
+    
+    echo "Deploy a ferramenta de exploração de banco de dados"
+    sh 020-DeploymentConfigGestionDB.sh
+}
+
+#
+#
+#
+function init(){
+    echoYellow "Criação do projeto no Openshift"
+    oc create -f project.yaml
+    oc project porte-e
+}
+
+
+#
+#
+#
+function init_env(){
+
+    cd ../backend/controle-acesso 
+    cp template.params .env 
+
+    echo "O arquivo foi copiado. Por favor, verifique-o e preencha as variáveis de ambiente que não possuem valor definido."
+}
+
+#
+# Démarre a tunnel ngrok
+#
+function ngrok_start(){
+
+    # Vérifie si ngrok et oc sont installés
+    isNgrokInstalled 
+    # isOcInstalled
+
+    # Variable reçoit l'adresse IP
+    IP_ADDR=$1
+    PORT=$2
+
+    if [ -z "${PORT}" ]; then 
+        PORT="80"
+    fi 
+    # Vérifie si l'adresse IP est innexistant; si c'est le cas, fournir une erreur
+    if [ -z ${IP_ADDR} ]; then
+        echoRed "Erro de parametrização" 
+        echoRed "Utilização: ${0} ngrok_start <endereço ip> <porta>" 
+        exit 0
+    else 
+        echo "Inicializando o túnel ngrok para a aplicação no endereço: [${IP_ADDR}:${PORT}]" 
+        nohup ngrok http --host-header=rewrite ${IP_ADDR}:${PORT} >/dev/null 2>&1 & 
+    fi
+
+    echo "Espera 5 segundos antes de continuar"
+    sleep 5s
+
+    echo "Inspeciona o endereço atribuído pelo ngrok, e muda o protocolo de https para http" 
+
+    SITE_URL=$(curl http://localhost:4040/api/tunnels | jq --raw-output '.tunnels[] | .public_url'); 
+    SITE_URL="http:$(echo $SITE_URL | cut -d':' -f 2)"
+    echo $SITE_URL
+    checkNgrokTunnelActive
+
+    echo "Seta a Seter la variable d'environnement dans Openshift" 
+    oc set env dc/port-e-daemon --overwrite HOST_TUNNEL=$SITE_URL
+
+}
+
+# Function transformation de string à 
+function toLower(){
+    echo $(echo ${@} | tr '[:upper:]' '[:lower:]')
+}
+
+
+
+# =============================================================================
+# Évaluation des commandes, et exécution selon les options reçues
+# =============================================================================
+COMMAND=${1}
+
+if [ -z "${COMMAND}" ]; then 
+    COMMAND="help"
+fi 
+
+case "${COMMAND}" in 
+
+    down|rm)
+        echo "Para os containeres e destrói os volumes"
+        cd ../backend/controle-acesso/
+        docker-compose down
+        ;;
+
+    help)
+        usage
+        ;;
+
+    init-env) 
+        echo "Inicializa o arquivo de ambiente" 
+        init_env
+        ;;
+
+    logs) 
+        echo "Carrega os logs do docker"
+        cd ../backend/controle-acesso/
+        docker-compose logs
+        ;;
+
+    ngrok-start)
+        echoYellow "Inicializando a conexão ngrok"
+        ngrok_start ${2} ${3}
+        ;;
+
+    start|up)
+        echo "Inicializa os containeres"
+        cd ../backend/controle-acesso/
+        docker-compose start
+        ;;
+
+    stop)
+        echo "Para os containeres e destrói os volumes"
+        cd ../backend/controle-acesso/
+        docker-compose stop 
+        ;;
+
+    *) 
+        escapedCmd=$(echo "${@}" | sed "s~'~\\\'~g" | sed 's~\"~\\"~g' | sed 's~,~\\,~g')
+        eval ${escapedCmd}
+        ;;
+esac
+
+# echo "[DEBUG] COMMANDE: " ${COMMAND}
+# =============================================================================
+#   Fin du script
+# =============================================================================
