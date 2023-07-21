@@ -172,6 +172,8 @@ function deploy(){
 #
 function init(){
     echoYellow "Criação do projeto no Openshift"
+    isOcInstalled
+    cd ../openshift/templates
     oc create -f project.yaml
     oc project porte-e
 }
