@@ -44,3 +44,5 @@ utils/constants.ts
 
 # Exclui arquivos de configuracao do omnidb 
 config-omnidb/
+
+*.zip
