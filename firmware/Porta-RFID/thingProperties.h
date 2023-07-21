@@ -14,16 +14,26 @@
 #define SS_PIN 4  
 #define RST_PIN 5
 
-// Definicao do local da porta
-#define LOCAL_ID A10
+/**
+ * Definicão da funcao de escrita no serial monitor. Se a variavel DEBUG estiver 
+ * definida, o texto é escrito na saida; senao, by-passa. 
+ */
+#define DEBUG 
+#ifdef DEBUG
+  #define dbg(str) Serial.println(str); 
+#else 
+  #define dbg(str) // nada 
+#endif
 
-#define WIFI_RETRIES 30
+// Definicao do local da porta
+#define LOCAL_ID "A01"
+
 // ----------------------------
 // Configurations de connexion au site 
 // ----------------------------
 
 // Mettre just l'addresse base de l'URL qu'on veut se connecter.
-#define HOST_ADDRESS "http://192.168.10.18"
+#define HOST_ADDRESS "porta-rfid.apps.exp.openshift.cqen.ca"
 
 // Le reste de l'adresse qui vient après l'URL de base
 #define ENDPOINT "/acesso/filtra"
@@ -34,22 +44,15 @@
 // peut briser l'application
 // #define HOST_FINGERPRINT "C1 B5 F2 29 27 9B 46 14 EB 80 3E B3 0F 35 AC 68 26 40 5C 81"
 
-// ----------------------------
-// Configurations de tag NFC 
-// ----------------------------
+#define BAUD_RATE 115200
 
-// Adresse de l'URL qui sera broadcasté par le NFC
-// #define didcommInvite   "https://exp-port-e-invitant.apps.exp.openshift.cqen.ca/index.html"
+
 
 // ----------------------------
 // Variables diverses 
 // ----------------------------
-#define ADDRESS_NON_DISP    0
-#define ADDRESS_DISP        1
-
 #define HTTP_PORT           80
 #define HTTPS_PORT          443
-#define NFC_BUFFER_SIZE     512
 
 #define SIG_INI     "0xAA"
 #define SIG_FIN     "0xAB"
