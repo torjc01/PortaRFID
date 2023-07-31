@@ -247,6 +247,16 @@ docker exec -it my_container python omnidb-server.py --createsuperuser=<nome usu
 ###  Implantação produção 
 ###  Screenshots e fotos 
 
+<h3>Screenshot do firmware `daemon` Arduino</h3>
+<div align="left">
+    <img src="./images/Arduino-Daemon.png" />
+</div>
+
+<h3>Screenshot da API de backend</h3>
+<div align="left">
+    <img src="./images/API.png" />
+</div>
+
 
 ##   Firmware 
 ###  Dependências 
