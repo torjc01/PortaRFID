@@ -278,7 +278,7 @@ case "${COMMAND}" in
     start|up)
         echo "Inicializa os containeres"
         cd ../backend/controle-acesso/
-        docker-compose start
+        docker-compose up
         ;;
 
     stop)
