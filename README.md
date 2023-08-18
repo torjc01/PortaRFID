@@ -21,14 +21,7 @@ O novo conteúdo deste README.md será editado na branch [features/inicial](http
 
 # Projeto Porta RFID 
 
-(Texto da proposta inicial no site do Garoa HC)
-
-- Proposta: criar um sistema que permita a abertura de uma porta (ou qualquer outra coisa) através de uma tag rfid, como visto no London Hackspace
-- Ideia basica: um leitor RFID (touchatag) é ligado via USB a um computador. O computador lê o serial number da tag e consulta um banco de dados de membros com seu serial associado. Se o serial for válido, o computador, através de um arduino (ou qualquer outra coisa), aciona um relê, que por sua vez aciona uma trava eletrônica (tipo portão eletrônico), abrindo a porta
-- Caveat: em Londres eles usavam o Oyster (tipo bilhete único) como tag. Podemos ver se o bilhete único pode servir ao mesmo propósito (nao, nao serve, eu ja testei. O bilhete unico usa 13MHz e tecnologia MiFare, diferentaço e com direito a encriptacao. Obviamente moooito mais caro. (tabajaralabs))
-- Software: librfidiot
-- Possíveis problemas: clonagem de tag rfid. Qual a segurança na leitura do serial? Associar com outro meio, como senha?
-- Vantagens: se alguém perder a chave não é preciso trocar a de todos
+[Texto da proposta inicial no site do Garoa HC](https://garoa.net.br/wiki/Porta_RFID) - consulte neste link a proposta de projeto listada no Wiki do Garoa Hacker Clube. 
 
 
 ## Arquitetura geral do sistema 
@@ -344,4 +337,8 @@ Também digno de menção é o software de exploração de banco de dados OmniDB
 [Alarme Provinciale](https://www.alarmeprovinciale.com) - empresa quebecoise, varejista na venda, instalaçãoo e manutenção de sistemas de segurança física.  
 [Documenting work: https://github.com/torjc01/DocumentingWork](https://github.com/torjc01/DocumentingWork) - minha reescritura de um artigo antigo da revista `Make` que fornece orientações particularmente interessantes e úteis para a documentação de todo tipo de projeto.  
 [TT Electronics](https://blog.ttelectronics.com/rfid-technology) - blog sobre RFID  
-[Atlas RFID Store](https://atlasrfidstore.com) - companhia especializada em equipamentos para RFID  
+[Atlas RFID Store](https://atlasrfidstore.com) - companhia especializada em equipamentos para RFID   
+[LAB401](https://lab401.com) - otima loja de equipamentos RFID / NFC / Hacking
+[HydraBus](https://hydrabus.com/) - equipamento de sniffing
+
+[ASCII Banner](https://manytools.org/hacker-tools/ascii-banner/) - utililzando a fonte ANSI-Shadow
